@@ -444,8 +444,10 @@ function narrate(
 /** Profit versus discount, including discounts below the margin floor (flagged illegal) — for charts. Pass the recommendation's own `evalState` to redraw the curve it was decided on. */
 export function discountCurve(key: CandidateKey, cfg: EngineConfig, state: EvalState = FRESH_STATE, maxPct = 40): DiscountOption[] {
   const ctx = buildContext(key, cfg);
+  // Always reach the deepest legal discount, even when it is beyond `maxPct` (high-margin products).
+  const top = Math.max(maxPct, ctx.band.discounts[ctx.band.discounts.length - 1] ?? 0);
   const points: DiscountOption[] = [];
-  for (let d = cfg.discountStep; d <= maxPct + 1e-9; d += cfg.discountStep) points.push(evaluateOption(ctx, Math.round(d * 100) / 100, state));
+  for (let d = cfg.discountStep; d <= top + 1e-9; d += cfg.discountStep) points.push(evaluateOption(ctx, Math.round(d * 100) / 100, state));
   return points;
 }
 

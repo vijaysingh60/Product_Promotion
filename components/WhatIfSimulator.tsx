@@ -8,7 +8,8 @@ import type { City, DiscountOption, EngineConfig, Segment } from "@/types";
 import DiscountCurve from "./DiscountCurve";
 import { Card, ClearanceBadge, RiskBadge, selectClass, StockBadge } from "./ui";
 
-const SLIDER_MAX = 40;
+/** The slider and curve span at least this many points; wider when a product's legal band is deeper. */
+const MIN_AXIS = 40;
 
 interface Props {
   config: EngineConfig;
@@ -27,7 +28,8 @@ export default function WhatIfSimulator({ config, products, segments, cities, in
 
   const key = useMemo(() => ({ productId, segment, city }), [productId, segment, city]);
   const rec = useMemo(() => evaluateCandidate(key, config), [key, config]);
-  const curve = useMemo(() => discountCurve(key, config, undefined, SLIDER_MAX), [key, config]);
+  const curve = useMemo(() => discountCurve(key, config, undefined, MIN_AXIS), [key, config]);
+  const axisMax = curve[curve.length - 1]?.discountPct ?? MIN_AXIS;
 
   const { band } = rec;
   const legalMax = band.discounts[band.discounts.length - 1] ?? 0;
@@ -42,15 +44,17 @@ export default function WhatIfSimulator({ config, products, segments, cities, in
     const low = Math.max(step, Math.round((legalMax * 0.4) / step) * step);
     const picks = [low, best?.discountPct ?? Math.round(legalMax / 2 / step) * step, legalMax];
     const unique = [...new Set(picks.map((d) => Math.min(d, legalMax)))].sort((a, b) => a - b);
-    return unique.map((d, i) => ({
-      label: d === legalMax && unique.length > 1 ? "Aggressive" : d === best?.discountPct ? "Engine's pick" : i === 0 ? "Conservative" : "Moderate",
-      option: curve.find((o) => Math.abs(o.discountPct - d) < 1e-6)!,
-    }));
+    return unique.flatMap((d, i) => {
+      const option = curve.find((o) => Math.abs(o.discountPct - d) < 1e-6);
+      if (!option) return [];
+      const label = d === legalMax && unique.length > 1 ? "Aggressive" : d === best?.discountPct ? "Engine's pick" : i === 0 ? "Conservative" : "Moderate";
+      return [{ label, option }];
+    });
   }, [band.isEmpty, legalMax, best, curve, step]);
 
   const select = `${selectClass} w-full`;
   const label = "mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-500";
-  const legalPct = (legalMax / SLIDER_MAX) * 100;
+  const legalPct = (legalMax / axisMax) * 100;
   const blockedTip = band.isEmpty
     ? `No profitable discount available: the offer would drop below ${formatINR(band.minOfferPrice)} (cost ${formatINR(band.costPrice)} + ${config.marginFloorPct}%) even at 0% off.`
     : `Blocked: beyond ${legalMax}% the offer would drop below ${formatINR(band.minOfferPrice)} (cost ${formatINR(band.costPrice)} + ${config.marginFloorPct}% floor).`;
@@ -103,7 +107,7 @@ export default function WhatIfSimulator({ config, products, segments, cities, in
             <div className="mt-1 flex justify-between text-[11px] text-slate-400">
               <span>0%</span>
               <span>{band.isEmpty ? "all blocked" : `${legalMax}% max legal`}</span>
-              <span>{SLIDER_MAX}%</span>
+              <span>{axisMax}%</span>
             </div>
           </div>
         </div>
@@ -128,7 +132,7 @@ export default function WhatIfSimulator({ config, products, segments, cities, in
           )}
 
           {at?.viable && (
-            <p className="-mb-2 text-xs text-slate-500">
+            <p className="text-xs text-slate-500">
               {at.limits.stockCapped
                 ? `Stock-capped: the audience is sized so expected buyers stay within ${config.stockCapPct}% of safe units, so a deeper discount reaches fewer customers (${formatNumber(at.audience)} of ${formatNumber(at.segmentSize)}). `
                 : `Audience: all ${formatNumber(at.segmentSize)} customers in the segment — stock is not a limit here. `}
