@@ -1,6 +1,7 @@
 // Dashboard maths: filters, headline numbers, KPIs and chart series. Pure functions over plan rows,
 // so every number on the dashboard can be reproduced from a script.
 
+import { formatINRCompact } from "./format";
 import type { InventoryRow, PlanRow, RiskLevel } from "../types";
 
 export interface Filters {
@@ -86,11 +87,13 @@ export interface WaterfallStep {
   value: number;
   /** Signed change (for tooltips) */
   delta: number;
+  /** Text shown above the bar: "₹1.81Cr" for totals, "+₹12.4L" / "-₹5.2L" for steps */
+  label: string;
   kind: "total" | "up" | "down";
 }
 
-/** Baseline → extra-unit profit → discount given away → stockout loss → promo cost → clearance → projected. */
-export function waterfall(rows: PlanRow[]): { steps: WaterfallStep[]; axisMin: number } {
+/** Baseline → extra units → discount given away → stockout loss → promo cost → clearance → projected. */
+export function waterfall(rows: PlanRow[]): { steps: WaterfallStep[]; axisMin: number; axisMax: number; ticks: number[] } {
   const plan = funded(rows);
   const baseline = sum(rows, (r) => r.baselineProfit);
   const deltas: [string, number][] = [
@@ -100,20 +103,28 @@ export function waterfall(rows: PlanRow[]): { steps: WaterfallStep[]; axisMin: n
     ["Promo cost", sum(plan, (r) => r.bridge.promoCost)],
     ["Clearance value", sum(plan, (r) => r.bridge.clearance)],
   ];
-  const steps: WaterfallStep[] = [{ name: "Baseline", base: 0, value: baseline, delta: baseline, kind: "total" }];
+  const stepText = (d: number) => `${d >= 0 ? "+" : ""}${formatINRCompact(d)}`;
+  const steps: WaterfallStep[] = [{ name: "Baseline", base: 0, value: baseline, delta: baseline, label: formatINRCompact(baseline), kind: "total" }];
   let running = baseline;
   let lo = baseline;
+  let hi = baseline;
   for (const [name, delta] of deltas) {
     if (Math.abs(delta) < 1) continue;
     const next = running + delta;
-    steps.push({ name, base: Math.min(running, next), value: Math.abs(delta), delta, kind: delta >= 0 ? "up" : "down" });
+    steps.push({ name, base: Math.min(running, next), value: Math.abs(delta), delta, label: stepText(delta), kind: delta >= 0 ? "up" : "down" });
     running = next;
     lo = Math.min(lo, running);
+    hi = Math.max(hi, running);
   }
-  steps.push({ name: "Projected", base: 0, value: running, delta: running, kind: "total" });
+  steps.push({ name: "Projected", base: 0, value: running, delta: running, label: formatINRCompact(running), kind: "total" });
+
   // The incremental steps are tiny next to the baseline, so the axis starts just below them.
+  // Min, max and ticks are computed here (not left to the chart) so the axis matches the caption exactly.
   const spread = Math.max(...steps.slice(1, -1).map((s) => s.value), 1) * 3;
-  return { steps, axisMin: Math.max(0, Math.floor((lo - spread) / 1e5) * 1e5) };
+  const axisMin = Math.max(0, Math.floor((lo - spread) / 1e5) * 1e5);
+  const axisMax = Math.max(axisMin + 1e5, Math.ceil((hi + spread * 0.15) / 1e5) * 1e5);
+  const ticks = Array.from({ length: 5 }, (_, i) => axisMin + ((axisMax - axisMin) * i) / 4);
+  return { steps, axisMin, axisMax, ticks };
 }
 
 export interface GroupPoint {

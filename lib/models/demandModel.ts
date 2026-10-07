@@ -9,6 +9,14 @@
 
 import { REFERENCE_RESPONSE } from "./responseModel";
 
+import type { Category } from "../../types";
+
+/** How strongly each category's sales respond to a discount (a model parameter, not data). */
+export const CATEGORY_ELASTICITY: Record<Category, number> = {
+  Audio: 9, Wearables: 9, Computers: 4, Mobiles: 4.5, Footwear: 9, Bags: 10,
+  "Home Entertainment": 5, Kitchen: 8, "Home Appliances": 6, Accessories: 11, Beauty: 10, Sports: 9,
+};
+
 export interface DemandInput {
   /** Units per day, all segments, no promotion */
   dailySalesRate: number;

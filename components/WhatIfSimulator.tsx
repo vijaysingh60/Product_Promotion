@@ -4,7 +4,8 @@ import { useMemo, useState } from "react";
 import { CircleCheck, Lock } from "lucide-react";
 import { discountCurve, evaluateCandidate } from "@/lib/decisionEngine";
 import { formatINR, formatNumber } from "@/lib/format";
-import type { City, DiscountOption, EngineConfig, Segment } from "@/types";
+import { indexDataset } from "@/lib/dataset";
+import type { City, Dataset, DiscountOption, EngineConfig, Segment } from "@/types";
 import DiscountCurve from "./DiscountCurve";
 import { Card, ClearanceBadge, RiskBadge, selectClass, StockBadge } from "./ui";
 
@@ -13,22 +14,24 @@ const MIN_AXIS = 40;
 
 interface Props {
   config: EngineConfig;
-  products: { id: string; name: string; mrp: number }[];
+  dataset: Dataset;
   segments: Segment[];
   cities: City[];
   initial: { productId: string; segment: Segment; city: City; discount: number | null };
 }
 
 /** Everything runs in the browser against the same pure engine the plan uses. */
-export default function WhatIfSimulator({ config, products, segments, cities, initial }: Props) {
+export default function WhatIfSimulator({ config, dataset, segments, cities, initial }: Props) {
+  const data = useMemo(() => indexDataset(dataset), [dataset]);
+  const products = dataset.products;
   const [productId, setProductId] = useState(initial.productId);
   const [segment, setSegment] = useState(initial.segment);
   const [city, setCity] = useState(initial.city);
   const [picked, setPicked] = useState<number | null>(initial.discount);
 
   const key = useMemo(() => ({ productId, segment, city }), [productId, segment, city]);
-  const rec = useMemo(() => evaluateCandidate(key, config), [key, config]);
-  const curve = useMemo(() => discountCurve(key, config, undefined, MIN_AXIS), [key, config]);
+  const rec = useMemo(() => evaluateCandidate(key, config, data), [key, config, data]);
+  const curve = useMemo(() => discountCurve(key, config, data, undefined, MIN_AXIS), [key, config, data]);
   const axisMax = curve[curve.length - 1]?.discountPct ?? MIN_AXIS;
 
   const { band } = rec;

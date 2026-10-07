@@ -329,3 +329,17 @@ export interface Plan {
   inventoryRows: InventoryRow[];
   budget: { total: number; used: number };
 }
+
+// ------------------------------------------------------------------ data
+/** Everything the engine reads. Comes from MongoDB, or from the bundled demo data as a fallback. */
+export interface Dataset {
+  products: Product[];
+  inventory: Inventory[];
+  segmentProfiles: SegmentProfile[];
+  segmentSizes: SegmentSizes;
+  pastPromotions: Promotion[];
+  seasonality: SeasonEntry[];
+}
+
+/** Where the data on screen came from. */
+export type DataSource = { kind: "mongodb"; database: string } | { kind: "mock"; reason: string };

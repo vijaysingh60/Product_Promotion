@@ -3,12 +3,14 @@
 //
 // To use real data, replace the exported constants with your own, keeping the types in types/index.ts.
 
+import { CATEGORY_ELASTICITY } from "./models/demandModel";
 import {
   CATEGORY_NAMES,
   CITY_NAMES,
   SEGMENT_NAMES,
   type Category,
   type City,
+  type Dataset,
   type Inventory,
   type Product,
   type Promotion,
@@ -33,7 +35,6 @@ function mulberry32(seed: number) {
   };
 }
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
-const slugOf = (s: string) => s.toLowerCase().replace(/\s+/g, "-");
 
 // ---------------------------------------------------------------- products
 type ProductSeed = Omit<Product, "margin"> & {
@@ -196,19 +197,7 @@ export const seasonality: SeasonEntry[] = [
   { month: 12, label: "Year-end & winter", multiplier: 1.1, categoryBoost: { Footwear: 0.1, Sports: 0.1 } },
 ];
 
-/** Demand multiplier for a category in a month, plus the label to show. */
-export function seasonFor(month: number, category: Category): { label: string; multiplier: number } {
-  const entry = seasonality.find((s) => s.month === month) ?? seasonality[0];
-  return { label: entry.label, multiplier: entry.multiplier * (1 + (entry.categoryBoost[category] ?? 0)) };
-}
-
 // -------------------------------------------------------- past promotions
-// Category price response, used only to make the history look plausible.
-export const CATEGORY_ELASTICITY: Record<Category, number> = {
-  Audio: 9, Wearables: 9, Computers: 4, Mobiles: 4.5, Footwear: 9, Bags: 10,
-  "Home Entertainment": 5, Kitchen: 8, "Home Appliances": 6, Accessories: 11, Beauty: 10, Sports: 9,
-};
-
 function generatePastPromotions(): Promotion[] {
   const rand = mulberry32(7);
   const rows: Promotion[] = [];
@@ -236,32 +225,8 @@ function generatePastPromotions(): Promotion[] {
 }
 export const pastPromotions: Promotion[] = generatePastPromotions();
 
-// ----------------------------------------------------------------- lookups
-const productById = new Map(products.map((p) => [p.id, p]));
-const inventoryByKey = new Map(inventory.map((i) => [`${i.productId}|${i.city}`, i]));
-const profileBySegment = new Map(segmentProfiles.map((s) => [s.segment, s]));
-
-export const getProduct = (id: string) => productById.get(id);
-export const getInventory = (productId: string, city: City) => inventoryByKey.get(`${productId}|${city}`);
-export const getSegmentProfile = (segment: Segment) => profileBySegment.get(segment);
-
-/** Average uplift of past campaigns for this product and segment. */
-export function historyFor(productId: string, segment: Segment): { avgUpliftPct: number | null; campaigns: number } {
-  const rows = pastPromotions.filter((p) => p.productId === productId && p.segment === segment);
-  if (rows.length === 0) return { avgUpliftPct: null, campaigns: 0 };
-  return { avgUpliftPct: rows.reduce((s, r) => s + r.upliftPct, 0) / rows.length, campaigns: rows.length };
-}
-
-// ---------------------------------------------------------- recommendation ids
-export const buildId = (productId: string, segment: Segment, city: City) => `${productId}_${slugOf(segment)}_${slugOf(city)}`;
-
-export function parseId(id: string): { productId: string; segment: Segment; city: City } | null {
-  const [productId, segSlug, citySlug] = id.split("_");
-  const segment = SEGMENTS.find((s) => slugOf(s) === segSlug);
-  const city = CITIES.find((c) => slugOf(c) === citySlug);
-  if (!productById.has(productId) || !segment || !city) return null;
-  return { productId, segment, city };
-}
+/** The bundled demo data, in the same shape the database returns. Used for seeding and as a fallback. */
+export const mockDataset: Dataset = { products, inventory, segmentProfiles, segmentSizes, pastPromotions, seasonality };
 
 /** The three demo cases the engine must handle (checked by scripts/verify.mts). */
 export const DEMO_CASES = {
