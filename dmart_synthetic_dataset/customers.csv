@@ -1,0 +1,1001 @@
+customer_id,age,gender,segment,location,purchase_frequency_monthly,avg_monthly_spend,preferred_category
+C00001,33,Female,Premium Customers,Delhi,17,2654.27,Beverages
+C00002,22,Male,Students,Mumbai,8,3584.68,Grocery
+C00003,44,Other,Families,Hyderabad,13,2361.67,Home Care
+C00004,29,Male,Professionals,Bengaluru,19,5785.23,Snacks
+C00005,40,Male,Professionals,Bengaluru,20,5590.52,Electronics
+C00006,39,Male,Professionals,Hyderabad,6,4576.5,Beverages
+C00007,25,Female,Students,Kolkata,21,3019.05,Grocery
+C00008,36,Male,Families,Kolkata,1,3717.16,Electronics
+C00009,33,Male,Professionals,Ahmedabad,16,3101.77,Fashion
+C00010,21,Male,Students,Bengaluru,18,4976.59,Home Care
+C00011,51,Female,Premium Customers,Hyderabad,9,4924.95,Home Care
+C00012,20,Female,Students,Bengaluru,19,2469.64,Kitchen
+C00013,34,Female,Premium Customers,Bengaluru,13,2820.31,Beverages
+C00014,35,Female,Premium Customers,Kolkata,22,1797.8,Grocery
+C00015,29,Male,Families,Kolkata,1,3812.37,Snacks
+C00016,32,Female,Families,Bengaluru,10,7093.64,Home Care
+C00017,36,Male,Professionals,Chennai,13,3796.83,Beverages
+C00018,30,Male,Professionals,Bengaluru,2,2891.99,Snacks
+C00019,39,Female,Families,Delhi,5,2486.81,Home Care
+C00020,29,Female,Families,Kolkata,6,8807.45,Beverages
+C00021,24,Female,Professionals,Kolkata,19,2875.98,Fashion
+C00022,54,Female,Premium Customers,Mumbai,17,4476.28,Personal Care
+C00023,39,Female,Professionals,Delhi,20,3882.54,Home Care
+C00024,20,Male,Students,Mumbai,15,3217.48,Kitchen
+C00025,38,Male,Families,Ahmedabad,4,2549.6,Snacks
+C00026,40,Female,Professionals,Mumbai,19,1912.48,Beverages
+C00027,44,Male,Professionals,Hyderabad,5,1542.56,Electronics
+C00028,31,Male,Professionals,Kolkata,22,2985.51,Electronics
+C00029,25,Male,Students,Bengaluru,4,4286.19,Kitchen
+C00030,51,Female,Families,Bengaluru,23,4551.26,Beverages
+C00031,41,Male,Families,Mumbai,7,4760.64,Personal Care
+C00032,19,Male,Students,Mumbai,15,4031.98,Kitchen
+C00033,32,Female,Professionals,Hyderabad,7,3381.81,Home Care
+C00034,31,Male,Families,Hyderabad,13,2114.11,Personal Care
+C00035,29,Female,Families,Ahmedabad,17,1074.18,Personal Care
+C00036,29,Male,Families,Mumbai,13,5161.32,Grocery
+C00037,44,Male,Professionals,Pune,23,5414.26,Electronics
+C00038,24,Female,Students,Mumbai,19,3204.6,Home Care
+C00039,55,Female,Premium Customers,Delhi,11,3638.84,Fashion
+C00040,57,Female,Families,Kolkata,11,3698.07,Snacks
+C00041,32,Male,Families,Pune,4,3708.23,Kitchen
+C00042,41,Male,Families,Chennai,11,4790.02,Fashion
+C00043,24,Female,Students,Bengaluru,13,1323.83,Personal Care
+C00044,27,Male,Professionals,Hyderabad,11,8377.08,Kitchen
+C00045,38,Female,Premium Customers,Mumbai,9,2435.28,Snacks
+C00046,25,Female,Students,Delhi,8,4138.84,Snacks
+C00047,22,Male,Students,Pune,4,4436.87,Beverages
+C00048,30,Male,Professionals,Ahmedabad,14,3659.79,Kitchen
+C00049,39,Female,Professionals,Kolkata,2,4642.84,Fashion
+C00050,29,Male,Professionals,Pune,3,1502.11,Kitchen
+C00051,28,Female,Families,Kolkata,4,4685.82,Grocery
+C00052,23,Female,Students,Chennai,10,5044.14,Electronics
+C00053,42,Female,Families,Ahmedabad,20,5624.85,Kitchen
+C00054,35,Female,Professionals,Kolkata,19,2639.37,Personal Care
+C00055,54,Male,Families,Mumbai,10,1789.72,Beverages
+C00056,36,Female,Premium Customers,Ahmedabad,18,2342.19,Kitchen
+C00057,38,Female,Families,Delhi,16,4049.36,Beverages
+C00058,58,Female,Families,Pune,19,3617.05,Fashion
+C00059,38,Male,Families,Pune,5,3351.66,Home Care
+C00060,43,Male,Professionals,Delhi,21,5216.35,Snacks
+C00061,33,Female,Professionals,Kolkata,18,4709.66,Snacks
+C00062,41,Male,Professionals,Hyderabad,7,3208.81,Home Care
+C00063,53,Female,Premium Customers,Pune,18,1957.29,Grocery
+C00064,49,Male,Families,Chennai,8,4111.9,Grocery
+C00065,41,Male,Professionals,Mumbai,17,3217.39,Beverages
+C00066,41,Male,Professionals,Bengaluru,22,2511.89,Beverages
+C00067,41,Male,Professionals,Hyderabad,8,1567.06,Personal Care
+C00068,50,Male,Families,Bengaluru,7,2225.99,Grocery
+C00069,30,Male,Families,Mumbai,8,3418.27,Grocery
+C00070,35,Male,Families,Ahmedabad,24,3073.5,Fashion
+C00071,43,Male,Families,Chennai,22,2370.2,Kitchen
+C00072,28,Male,Families,Mumbai,16,2044.35,Personal Care
+C00073,45,Female,Families,Kolkata,5,1725.98,Kitchen
+C00074,21,Female,Students,Pune,9,2181.23,Personal Care
+C00075,19,Female,Students,Ahmedabad,17,3210.09,Fashion
+C00076,19,Male,Students,Pune,9,5235.2,Home Care
+C00077,31,Male,Professionals,Mumbai,14,3294.62,Kitchen
+C00078,33,Female,Families,Chennai,10,3820.96,Electronics
+C00079,22,Female,Students,Bengaluru,12,3669.32,Grocery
+C00080,32,Female,Professionals,Bengaluru,21,4989.38,Beverages
+C00081,24,Male,Professionals,Mumbai,1,3557.31,Home Care
+C00082,38,Male,Families,Hyderabad,7,2252.37,Electronics
+C00083,37,Other,Professionals,Pune,5,1266.77,Snacks
+C00084,38,Female,Families,Mumbai,13,3082.88,Grocery
+C00085,48,Male,Families,Ahmedabad,17,6462.77,Grocery
+C00086,25,Male,Professionals,Delhi,12,2313.22,Electronics
+C00087,46,Male,Families,Mumbai,17,1650.18,Fashion
+C00088,58,Female,Families,Kolkata,5,2936.35,Electronics
+C00089,42,Female,Premium Customers,Kolkata,9,3960.34,Home Care
+C00090,29,Male,Professionals,Chennai,7,3590.9,Fashion
+C00091,20,Other,Students,Bengaluru,20,2612.17,Grocery
+C00092,51,Male,Families,Delhi,13,4798.98,Home Care
+C00093,53,Female,Families,Delhi,7,3931.1,Grocery
+C00094,28,Female,Families,Bengaluru,12,1131.27,Kitchen
+C00095,24,Male,Professionals,Kolkata,13,4468.56,Kitchen
+C00096,22,Female,Students,Chennai,21,3338.28,Fashion
+C00097,42,Male,Families,Pune,7,6661.99,Home Care
+C00098,40,Male,Professionals,Pune,5,3528.11,Grocery
+C00099,39,Male,Premium Customers,Hyderabad,24,2380.81,Kitchen
+C00100,41,Female,Families,Pune,13,4635.43,Kitchen
+C00101,32,Other,Premium Customers,Kolkata,22,3723.74,Beverages
+C00102,31,Male,Professionals,Mumbai,24,8563.8,Home Care
+C00103,50,Female,Families,Mumbai,20,5919.94,Fashion
+C00104,30,Male,Families,Ahmedabad,15,2477.38,Personal Care
+C00105,29,Male,Families,Ahmedabad,3,3000.55,Beverages
+C00106,36,Male,Families,Hyderabad,5,1261.09,Beverages
+C00107,37,Male,Professionals,Mumbai,5,3336.1,Fashion
+C00108,32,Other,Families,Bengaluru,8,2402.38,Electronics
+C00109,53,Female,Families,Ahmedabad,2,5236.05,Fashion
+C00110,35,Male,Families,Mumbai,16,3471.26,Snacks
+C00111,43,Female,Professionals,Kolkata,6,3570.27,Grocery
+C00112,24,Male,Students,Ahmedabad,11,3032.55,Kitchen
+C00113,21,Female,Students,Chennai,12,3564.25,Kitchen
+C00114,35,Female,Professionals,Pune,19,3337.39,Beverages
+C00115,24,Male,Professionals,Delhi,15,3539.38,Snacks
+C00116,21,Male,Students,Bengaluru,22,3924.17,Beverages
+C00117,19,Female,Students,Ahmedabad,15,3853.83,Snacks
+C00118,42,Female,Families,Mumbai,11,2534.32,Beverages
+C00119,19,Other,Students,Hyderabad,3,1737.5,Home Care
+C00120,24,Female,Professionals,Delhi,22,3005.2,Snacks
+C00121,52,Female,Premium Customers,Kolkata,16,2774.02,Beverages
+C00122,42,Female,Families,Mumbai,17,6213.97,Personal Care
+C00123,39,Female,Families,Ahmedabad,14,3032.58,Kitchen
+C00124,59,Male,Families,Ahmedabad,3,1780.77,Kitchen
+C00125,36,Female,Professionals,Pune,12,3851.13,Personal Care
+C00126,23,Male,Students,Bengaluru,24,1412.83,Fashion
+C00127,30,Male,Professionals,Pune,18,8612.71,Home Care
+C00128,55,Female,Families,Ahmedabad,11,2572.74,Fashion
+C00129,21,Other,Students,Ahmedabad,15,8411.54,Beverages
+C00130,45,Male,Families,Bengaluru,1,3232.61,Home Care
+C00131,22,Male,Students,Pune,7,3571.16,Beverages
+C00132,37,Male,Families,Hyderabad,8,1908.86,Snacks
+C00133,36,Female,Families,Kolkata,9,4440.34,Electronics
+C00134,42,Female,Families,Kolkata,11,3898.54,Personal Care
+C00135,49,Male,Families,Mumbai,9,2942.46,Personal Care
+C00136,35,Female,Professionals,Mumbai,19,1752.78,Personal Care
+C00137,56,Female,Families,Kolkata,19,1657.99,Snacks
+C00138,37,Male,Families,Chennai,22,5434.71,Grocery
+C00139,44,Female,Families,Kolkata,24,1180.71,Personal Care
+C00140,40,Female,Professionals,Ahmedabad,9,2084.17,Home Care
+C00141,26,Female,Professionals,Bengaluru,4,1367.29,Electronics
+C00142,25,Female,Professionals,Ahmedabad,21,2474.83,Snacks
+C00143,31,Female,Families,Kolkata,10,3781.18,Electronics
+C00144,22,Male,Students,Ahmedabad,7,2845.41,Beverages
+C00145,18,Male,Students,Hyderabad,2,6611.14,Kitchen
+C00146,33,Female,Professionals,Pune,14,6187.09,Home Care
+C00147,31,Male,Professionals,Delhi,8,6102.17,Personal Care
+C00148,33,Female,Professionals,Chennai,12,4728.4,Grocery
+C00149,51,Female,Families,Kolkata,6,2890.4,Beverages
+C00150,22,Female,Students,Chennai,1,2978.66,Electronics
+C00151,20,Male,Students,Hyderabad,19,4857.47,Kitchen
+C00152,50,Female,Families,Delhi,23,3819.13,Home Care
+C00153,19,Male,Students,Kolkata,8,2411.29,Electronics
+C00154,23,Female,Professionals,Bengaluru,11,7099.99,Beverages
+C00155,30,Female,Professionals,Hyderabad,12,3575.78,Grocery
+C00156,25,Female,Students,Ahmedabad,5,2889.61,Electronics
+C00157,45,Female,Families,Kolkata,9,2786.49,Snacks
+C00158,56,Female,Families,Delhi,6,3588.49,Beverages
+C00159,36,Male,Families,Chennai,11,1510.69,Home Care
+C00160,34,Female,Professionals,Kolkata,21,2086.9,Home Care
+C00161,39,Female,Professionals,Mumbai,12,3330.11,Electronics
+C00162,41,Female,Families,Chennai,8,2927.69,Electronics
+C00163,53,Male,Premium Customers,Delhi,5,5976.04,Kitchen
+C00164,28,Female,Professionals,Delhi,11,1211.87,Kitchen
+C00165,38,Female,Professionals,Delhi,15,3426.78,Home Care
+C00166,41,Male,Professionals,Chennai,4,3172.93,Personal Care
+C00167,56,Female,Families,Mumbai,8,4861.39,Grocery
+C00168,50,Male,Premium Customers,Mumbai,7,1420.82,Beverages
+C00169,58,Female,Families,Ahmedabad,17,1401.38,Personal Care
+C00170,23,Female,Students,Ahmedabad,13,3979.04,Snacks
+C00171,23,Female,Students,Pune,9,4223.29,Grocery
+C00172,35,Female,Families,Hyderabad,5,5354.93,Fashion
+C00173,55,Female,Families,Hyderabad,18,2481.14,Home Care
+C00174,20,Female,Students,Hyderabad,23,3964.77,Electronics
+C00175,24,Male,Students,Kolkata,11,2494.08,Electronics
+C00176,25,Male,Students,Chennai,18,1602.26,Electronics
+C00177,31,Female,Professionals,Kolkata,24,4204.82,Electronics
+C00178,27,Female,Professionals,Mumbai,9,6399.63,Snacks
+C00179,29,Male,Professionals,Hyderabad,2,2540.57,Fashion
+C00180,45,Female,Families,Delhi,3,3587.26,Beverages
+C00181,26,Male,Premium Customers,Mumbai,2,1115.36,Beverages
+C00182,37,Female,Premium Customers,Kolkata,23,2404.93,Electronics
+C00183,38,Male,Professionals,Ahmedabad,12,3236.49,Kitchen
+C00184,30,Male,Professionals,Delhi,8,3881.77,Grocery
+C00185,48,Male,Families,Pune,18,3952.71,Personal Care
+C00186,29,Male,Families,Delhi,1,3800.98,Home Care
+C00187,43,Male,Professionals,Hyderabad,9,5675.18,Beverages
+C00188,50,Male,Families,Pune,11,3326.25,Personal Care
+C00189,37,Female,Families,Hyderabad,10,7828.64,Beverages
+C00190,33,Male,Families,Kolkata,20,4407.83,Kitchen
+C00191,24,Male,Professionals,Mumbai,18,3400.49,Beverages
+C00192,23,Male,Students,Kolkata,14,4165.06,Fashion
+C00193,56,Male,Families,Mumbai,9,4100.65,Home Care
+C00194,18,Male,Students,Chennai,12,5019.77,Fashion
+C00195,58,Female,Families,Bengaluru,6,1347.52,Home Care
+C00196,37,Male,Families,Pune,11,5558.77,Kitchen
+C00197,36,Male,Families,Hyderabad,3,2235.43,Grocery
+C00198,29,Male,Professionals,Chennai,7,2490.34,Home Care
+C00199,55,Female,Families,Bengaluru,5,3076.17,Kitchen
+C00200,49,Female,Families,Chennai,22,5002.79,Kitchen
+C00201,43,Male,Professionals,Kolkata,21,2508.32,Grocery
+C00202,40,Female,Professionals,Chennai,18,3895.68,Fashion
+C00203,25,Male,Professionals,Mumbai,21,1774.3,Personal Care
+C00204,30,Male,Families,Delhi,6,3206.42,Beverages
+C00205,36,Male,Families,Ahmedabad,9,2976.59,Fashion
+C00206,45,Female,Premium Customers,Kolkata,2,2725.4,Electronics
+C00207,42,Female,Families,Kolkata,24,3221.34,Fashion
+C00208,20,Female,Students,Mumbai,24,3674.54,Grocery
+C00209,45,Male,Premium Customers,Kolkata,14,1894.07,Electronics
+C00210,59,Male,Families,Kolkata,16,1247.7,Kitchen
+C00211,35,Female,Families,Bengaluru,15,2802.61,Electronics
+C00212,18,Female,Students,Pune,18,2901.86,Personal Care
+C00213,30,Male,Professionals,Chennai,21,3329.04,Beverages
+C00214,24,Male,Students,Bengaluru,23,4688.36,Fashion
+C00215,40,Other,Professionals,Pune,20,2943.39,Fashion
+C00216,56,Male,Premium Customers,Kolkata,17,2865.7,Kitchen
+C00217,35,Male,Professionals,Pune,8,3862.94,Fashion
+C00218,23,Female,Students,Hyderabad,22,6330.57,Home Care
+C00219,22,Female,Students,Delhi,18,3312.97,Home Care
+C00220,27,Female,Professionals,Ahmedabad,3,1490.12,Snacks
+C00221,23,Female,Students,Kolkata,5,3061.74,Grocery
+C00222,30,Other,Families,Ahmedabad,3,1743.04,Beverages
+C00223,52,Female,Families,Ahmedabad,14,1771.46,Home Care
+C00224,31,Male,Families,Bengaluru,22,3986.16,Electronics
+C00225,19,Female,Students,Delhi,11,4322.67,Snacks
+C00226,28,Male,Premium Customers,Delhi,20,4039.38,Electronics
+C00227,32,Female,Families,Pune,8,2706.38,Grocery
+C00228,31,Female,Families,Mumbai,24,2682.65,Beverages
+C00229,31,Male,Families,Ahmedabad,2,6347.03,Snacks
+C00230,36,Male,Professionals,Ahmedabad,13,6244.79,Beverages
+C00231,58,Female,Families,Mumbai,16,2080.9,Grocery
+C00232,21,Male,Students,Delhi,15,2829.44,Personal Care
+C00233,23,Male,Professionals,Delhi,20,2766.0,Electronics
+C00234,34,Female,Families,Ahmedabad,5,3678.54,Home Care
+C00235,27,Male,Premium Customers,Hyderabad,22,3484.38,Home Care
+C00236,20,Male,Students,Mumbai,5,1255.83,Home Care
+C00237,43,Male,Professionals,Chennai,4,3225.24,Grocery
+C00238,18,Male,Students,Delhi,12,6746.29,Kitchen
+C00239,49,Other,Premium Customers,Pune,24,3117.54,Snacks
+C00240,36,Male,Professionals,Ahmedabad,16,2968.25,Beverages
+C00241,33,Male,Families,Chennai,4,801.1,Kitchen
+C00242,33,Other,Professionals,Kolkata,16,4794.15,Beverages
+C00243,51,Male,Families,Hyderabad,5,1858.82,Snacks
+C00244,43,Female,Professionals,Hyderabad,9,4201.37,Home Care
+C00245,32,Male,Professionals,Pune,23,3866.22,Personal Care
+C00246,36,Female,Families,Hyderabad,17,3320.11,Electronics
+C00247,23,Male,Professionals,Chennai,2,1844.43,Fashion
+C00248,29,Female,Professionals,Ahmedabad,15,4351.81,Personal Care
+C00249,25,Male,Professionals,Kolkata,17,2383.99,Kitchen
+C00250,47,Female,Families,Ahmedabad,8,2201.06,Electronics
+C00251,23,Male,Students,Hyderabad,8,4792.32,Personal Care
+C00252,34,Female,Families,Hyderabad,18,3150.37,Home Care
+C00253,36,Female,Premium Customers,Ahmedabad,9,6997.14,Kitchen
+C00254,23,Female,Students,Bengaluru,20,5187.19,Beverages
+C00255,25,Male,Professionals,Mumbai,18,3308.16,Kitchen
+C00256,22,Female,Students,Ahmedabad,11,1685.12,Electronics
+C00257,49,Female,Families,Hyderabad,12,2131.89,Home Care
+C00258,45,Female,Premium Customers,Bengaluru,4,3892.42,Personal Care
+C00259,29,Male,Families,Pune,5,2232.38,Personal Care
+C00260,47,Female,Families,Pune,19,3703.22,Fashion
+C00261,25,Female,Professionals,Pune,16,4503.57,Fashion
+C00262,18,Male,Students,Delhi,2,2363.51,Grocery
+C00263,44,Female,Professionals,Delhi,11,1058.34,Snacks
+C00264,47,Female,Families,Bengaluru,2,2060.13,Grocery
+C00265,50,Male,Families,Mumbai,4,4089.29,Kitchen
+C00266,43,Male,Professionals,Chennai,21,4107.04,Kitchen
+C00267,55,Female,Families,Bengaluru,19,3545.82,Snacks
+C00268,20,Male,Students,Ahmedabad,14,5243.03,Snacks
+C00269,36,Female,Professionals,Hyderabad,8,3087.99,Beverages
+C00270,46,Female,Premium Customers,Mumbai,14,3572.07,Personal Care
+C00271,38,Female,Premium Customers,Mumbai,23,3769.82,Snacks
+C00272,41,Male,Families,Chennai,4,2940.27,Fashion
+C00273,36,Female,Professionals,Mumbai,9,2766.4,Electronics
+C00274,54,Female,Families,Ahmedabad,2,4924.72,Kitchen
+C00275,43,Male,Families,Hyderabad,16,6596.26,Snacks
+C00276,36,Female,Professionals,Kolkata,21,2055.44,Home Care
+C00277,20,Female,Students,Ahmedabad,1,3640.54,Kitchen
+C00278,34,Female,Professionals,Pune,15,2713.6,Electronics
+C00279,46,Male,Families,Hyderabad,19,2103.03,Kitchen
+C00280,21,Male,Students,Chennai,3,3951.09,Kitchen
+C00281,32,Female,Premium Customers,Pune,22,3488.25,Grocery
+C00282,23,Male,Students,Ahmedabad,19,2944.88,Snacks
+C00283,42,Male,Professionals,Chennai,6,1031.33,Grocery
+C00284,20,Female,Students,Hyderabad,7,3773.47,Snacks
+C00285,18,Male,Students,Chennai,17,5741.82,Fashion
+C00286,54,Female,Families,Hyderabad,7,3175.79,Electronics
+C00287,25,Male,Students,Delhi,8,3687.49,Fashion
+C00288,29,Other,Professionals,Chennai,8,4097.91,Electronics
+C00289,22,Female,Students,Hyderabad,15,2729.1,Grocery
+C00290,40,Male,Professionals,Kolkata,8,4216.99,Grocery
+C00291,41,Male,Professionals,Kolkata,2,5494.29,Snacks
+C00292,41,Female,Families,Pune,9,5347.39,Personal Care
+C00293,23,Male,Students,Bengaluru,6,4186.57,Snacks
+C00294,35,Male,Professionals,Chennai,21,4859.87,Kitchen
+C00295,28,Female,Professionals,Pune,11,6914.34,Home Care
+C00296,57,Male,Families,Bengaluru,3,2264.08,Personal Care
+C00297,47,Male,Premium Customers,Ahmedabad,22,5090.04,Fashion
+C00298,24,Male,Students,Ahmedabad,1,5283.81,Personal Care
+C00299,32,Female,Professionals,Delhi,3,2488.18,Grocery
+C00300,25,Female,Students,Bengaluru,16,2960.39,Personal Care
+C00301,58,Female,Families,Chennai,18,2601.25,Snacks
+C00302,19,Male,Students,Pune,11,3244.86,Beverages
+C00303,28,Female,Professionals,Kolkata,21,4190.41,Beverages
+C00304,25,Female,Professionals,Delhi,18,2839.91,Grocery
+C00305,20,Other,Students,Delhi,17,1420.49,Home Care
+C00306,35,Female,Professionals,Pune,21,1841.87,Snacks
+C00307,24,Male,Professionals,Mumbai,17,7406.91,Snacks
+C00308,46,Male,Families,Kolkata,24,3397.44,Home Care
+C00309,38,Male,Families,Chennai,17,2083.62,Fashion
+C00310,32,Female,Families,Ahmedabad,5,5147.35,Personal Care
+C00311,51,Female,Premium Customers,Mumbai,22,5199.01,Snacks
+C00312,32,Female,Families,Delhi,9,3417.09,Personal Care
+C00313,43,Female,Premium Customers,Delhi,12,3188.63,Personal Care
+C00314,23,Female,Professionals,Kolkata,15,6430.77,Fashion
+C00315,40,Female,Professionals,Chennai,14,941.69,Kitchen
+C00316,40,Female,Families,Kolkata,9,1301.13,Home Care
+C00317,39,Male,Professionals,Ahmedabad,19,1867.26,Kitchen
+C00318,58,Female,Families,Bengaluru,22,2142.62,Snacks
+C00319,37,Male,Families,Pune,21,5322.84,Fashion
+C00320,57,Male,Families,Mumbai,18,2526.99,Grocery
+C00321,23,Male,Students,Hyderabad,4,4109.04,Fashion
+C00322,33,Female,Premium Customers,Delhi,3,4472.77,Fashion
+C00323,24,Male,Professionals,Ahmedabad,4,2348.36,Snacks
+C00324,40,Other,Families,Bengaluru,13,3052.97,Snacks
+C00325,29,Male,Families,Kolkata,2,4368.41,Beverages
+C00326,51,Male,Families,Delhi,2,4899.43,Fashion
+C00327,44,Male,Professionals,Chennai,7,4324.82,Home Care
+C00328,20,Female,Students,Pune,17,1728.2,Fashion
+C00329,32,Female,Professionals,Pune,20,3952.93,Electronics
+C00330,51,Male,Families,Pune,4,7901.52,Kitchen
+C00331,39,Female,Families,Pune,2,3800.28,Personal Care
+C00332,39,Female,Professionals,Bengaluru,18,2033.16,Electronics
+C00333,51,Female,Families,Hyderabad,6,4679.95,Snacks
+C00334,38,Male,Families,Mumbai,2,2123.04,Personal Care
+C00335,37,Male,Premium Customers,Pune,16,3554.18,Kitchen
+C00336,23,Female,Professionals,Hyderabad,24,4013.54,Kitchen
+C00337,22,Female,Students,Chennai,1,2368.93,Grocery
+C00338,43,Female,Professionals,Mumbai,12,2706.68,Grocery
+C00339,38,Male,Professionals,Ahmedabad,9,1979.9,Snacks
+C00340,29,Female,Professionals,Bengaluru,5,3174.48,Kitchen
+C00341,36,Female,Families,Mumbai,22,2870.96,Home Care
+C00342,18,Male,Students,Kolkata,4,3850.49,Personal Care
+C00343,45,Female,Premium Customers,Pune,22,2190.61,Home Care
+C00344,23,Female,Students,Chennai,12,3505.62,Beverages
+C00345,22,Female,Students,Bengaluru,22,3540.88,Snacks
+C00346,39,Female,Professionals,Delhi,24,3392.75,Grocery
+C00347,50,Female,Premium Customers,Delhi,23,4472.25,Beverages
+C00348,49,Male,Families,Mumbai,15,4477.48,Beverages
+C00349,24,Male,Students,Chennai,1,2146.4,Personal Care
+C00350,20,Female,Students,Chennai,7,4501.9,Snacks
+C00351,20,Female,Students,Kolkata,24,893.77,Snacks
+C00352,56,Male,Families,Delhi,13,2045.53,Kitchen
+C00353,31,Other,Families,Hyderabad,23,4148.01,Grocery
+C00354,19,Male,Students,Bengaluru,10,3345.36,Snacks
+C00355,22,Female,Students,Delhi,15,3975.43,Kitchen
+C00356,48,Female,Premium Customers,Hyderabad,15,1941.72,Electronics
+C00357,18,Female,Students,Delhi,20,1320.37,Fashion
+C00358,43,Other,Professionals,Pune,6,2295.2,Electronics
+C00359,32,Male,Professionals,Kolkata,3,2972.41,Snacks
+C00360,44,Other,Families,Chennai,18,1735.25,Personal Care
+C00361,36,Male,Families,Mumbai,16,4165.06,Personal Care
+C00362,40,Female,Professionals,Kolkata,6,3099.3,Beverages
+C00363,21,Female,Students,Mumbai,2,2157.83,Beverages
+C00364,40,Female,Families,Pune,4,6293.28,Grocery
+C00365,39,Male,Professionals,Ahmedabad,18,3257.07,Beverages
+C00366,55,Female,Families,Bengaluru,11,6244.31,Beverages
+C00367,24,Female,Professionals,Ahmedabad,22,2649.77,Home Care
+C00368,21,Male,Students,Ahmedabad,23,3167.68,Snacks
+C00369,29,Male,Professionals,Delhi,20,3655.42,Snacks
+C00370,39,Female,Professionals,Delhi,20,3499.42,Beverages
+C00371,45,Female,Families,Bengaluru,13,4060.11,Grocery
+C00372,19,Female,Students,Hyderabad,4,4365.25,Snacks
+C00373,48,Female,Families,Bengaluru,19,2087.33,Kitchen
+C00374,32,Male,Families,Delhi,23,1639.69,Kitchen
+C00375,40,Female,Families,Hyderabad,16,4799.7,Grocery
+C00376,37,Female,Professionals,Hyderabad,3,2670.82,Snacks
+C00377,56,Female,Families,Chennai,24,5142.98,Grocery
+C00378,51,Male,Families,Chennai,5,2592.77,Home Care
+C00379,52,Female,Families,Delhi,22,5800.13,Kitchen
+C00380,42,Male,Professionals,Mumbai,22,2149.07,Personal Care
+C00381,41,Female,Professionals,Kolkata,9,2900.6,Electronics
+C00382,43,Female,Families,Pune,16,5298.24,Electronics
+C00383,38,Female,Professionals,Chennai,22,6664.83,Kitchen
+C00384,59,Male,Families,Kolkata,9,4981.7,Fashion
+C00385,18,Male,Students,Ahmedabad,20,2058.61,Grocery
+C00386,41,Male,Professionals,Hyderabad,24,3791.8,Kitchen
+C00387,54,Female,Families,Kolkata,23,2966.48,Grocery
+C00388,28,Female,Professionals,Chennai,3,3165.1,Grocery
+C00389,42,Male,Families,Ahmedabad,1,2997.82,Fashion
+C00390,45,Male,Families,Mumbai,20,1105.07,Electronics
+C00391,41,Female,Families,Kolkata,4,3348.88,Grocery
+C00392,43,Male,Premium Customers,Chennai,16,9981.18,Home Care
+C00393,59,Other,Premium Customers,Ahmedabad,11,1851.82,Snacks
+C00394,30,Male,Professionals,Ahmedabad,23,1962.77,Fashion
+C00395,42,Male,Premium Customers,Ahmedabad,1,1249.61,Snacks
+C00396,28,Male,Professionals,Hyderabad,14,3924.41,Fashion
+C00397,57,Male,Families,Hyderabad,19,2554.13,Kitchen
+C00398,37,Female,Premium Customers,Kolkata,15,3597.44,Kitchen
+C00399,44,Female,Professionals,Delhi,24,2558.31,Beverages
+C00400,32,Male,Professionals,Pune,5,1337.48,Grocery
+C00401,53,Female,Families,Hyderabad,17,1486.0,Grocery
+C00402,29,Male,Families,Bengaluru,6,2379.01,Snacks
+C00403,54,Male,Families,Pune,20,2507.76,Personal Care
+C00404,19,Male,Students,Bengaluru,22,2872.86,Kitchen
+C00405,36,Female,Families,Ahmedabad,6,1846.23,Home Care
+C00406,20,Male,Students,Bengaluru,21,2066.4,Electronics
+C00407,45,Male,Premium Customers,Pune,4,5120.12,Grocery
+C00408,29,Male,Professionals,Delhi,19,5373.68,Personal Care
+C00409,41,Male,Families,Ahmedabad,6,3231.18,Snacks
+C00410,18,Male,Students,Kolkata,4,3010.04,Grocery
+C00411,41,Female,Professionals,Hyderabad,11,1676.3,Fashion
+C00412,48,Female,Families,Ahmedabad,20,4424.56,Kitchen
+C00413,36,Male,Professionals,Ahmedabad,2,3166.13,Beverages
+C00414,43,Male,Families,Ahmedabad,23,2299.45,Electronics
+C00415,26,Female,Professionals,Chennai,24,4051.52,Fashion
+C00416,32,Male,Premium Customers,Bengaluru,17,1729.78,Electronics
+C00417,34,Male,Families,Delhi,1,3747.97,Home Care
+C00418,33,Female,Professionals,Pune,8,4483.79,Personal Care
+C00419,24,Male,Students,Bengaluru,22,4022.5,Electronics
+C00420,33,Female,Professionals,Delhi,15,5747.16,Snacks
+C00421,40,Male,Professionals,Pune,6,3331.33,Personal Care
+C00422,34,Female,Families,Kolkata,20,1971.62,Personal Care
+C00423,26,Female,Professionals,Mumbai,24,1375.79,Beverages
+C00424,52,Female,Families,Pune,23,3830.79,Personal Care
+C00425,44,Female,Families,Kolkata,16,5156.03,Electronics
+C00426,32,Female,Families,Hyderabad,12,981.39,Snacks
+C00427,44,Male,Professionals,Kolkata,5,6320.26,Fashion
+C00428,18,Female,Students,Chennai,2,2392.7,Personal Care
+C00429,44,Female,Professionals,Pune,17,6267.6,Beverages
+C00430,41,Male,Professionals,Hyderabad,10,2465.24,Electronics
+C00431,24,Male,Students,Mumbai,22,5067.38,Electronics
+C00432,30,Female,Families,Kolkata,10,7551.78,Beverages
+C00433,35,Female,Professionals,Bengaluru,16,3472.18,Home Care
+C00434,39,Male,Professionals,Chennai,17,3743.99,Beverages
+C00435,43,Female,Professionals,Pune,17,3941.88,Home Care
+C00436,59,Female,Families,Ahmedabad,22,4754.87,Fashion
+C00437,56,Female,Families,Ahmedabad,9,1018.79,Electronics
+C00438,41,Female,Professionals,Chennai,15,2992.16,Home Care
+C00439,30,Male,Professionals,Ahmedabad,16,1632.2,Kitchen
+C00440,18,Other,Students,Bengaluru,2,3136.57,Electronics
+C00441,32,Male,Professionals,Mumbai,3,1713.36,Electronics
+C00442,42,Male,Professionals,Kolkata,11,1509.04,Electronics
+C00443,23,Female,Students,Hyderabad,2,3689.79,Fashion
+C00444,27,Female,Professionals,Pune,7,6130.31,Personal Care
+C00445,22,Male,Students,Delhi,7,1735.91,Beverages
+C00446,47,Female,Premium Customers,Chennai,4,5669.52,Home Care
+C00447,37,Male,Families,Chennai,13,2194.25,Grocery
+C00448,24,Male,Professionals,Delhi,10,6112.86,Kitchen
+C00449,53,Female,Families,Delhi,19,4101.55,Fashion
+C00450,52,Male,Families,Pune,3,5086.04,Grocery
+C00451,59,Male,Families,Bengaluru,14,4018.37,Kitchen
+C00452,42,Female,Families,Kolkata,23,1604.77,Personal Care
+C00453,47,Male,Families,Delhi,8,3824.44,Beverages
+C00454,52,Female,Families,Mumbai,24,1425.77,Home Care
+C00455,35,Female,Professionals,Bengaluru,8,4028.9,Fashion
+C00456,39,Male,Families,Kolkata,10,1451.36,Snacks
+C00457,37,Male,Professionals,Chennai,17,2839.31,Personal Care
+C00458,30,Male,Families,Kolkata,14,5227.08,Grocery
+C00459,59,Male,Families,Ahmedabad,11,1269.52,Personal Care
+C00460,43,Male,Premium Customers,Bengaluru,11,1458.41,Fashion
+C00461,51,Male,Families,Bengaluru,23,6139.38,Home Care
+C00462,28,Female,Premium Customers,Bengaluru,20,5765.39,Electronics
+C00463,20,Female,Students,Mumbai,23,3581.83,Snacks
+C00464,36,Male,Families,Pune,19,4355.83,Kitchen
+C00465,42,Male,Families,Pune,22,1648.77,Beverages
+C00466,25,Male,Students,Mumbai,11,7949.42,Fashion
+C00467,57,Female,Families,Delhi,24,5404.46,Electronics
+C00468,35,Male,Families,Mumbai,22,3741.27,Home Care
+C00469,39,Female,Professionals,Delhi,23,3794.77,Home Care
+C00470,51,Female,Premium Customers,Ahmedabad,9,4630.32,Personal Care
+C00471,18,Female,Students,Kolkata,8,2759.98,Personal Care
+C00472,59,Female,Families,Chennai,19,2126.75,Beverages
+C00473,21,Male,Students,Mumbai,20,3100.79,Home Care
+C00474,35,Male,Families,Delhi,24,2233.96,Snacks
+C00475,30,Male,Professionals,Ahmedabad,10,2235.16,Fashion
+C00476,50,Female,Premium Customers,Kolkata,18,1672.56,Kitchen
+C00477,47,Male,Premium Customers,Kolkata,23,4730.04,Fashion
+C00478,35,Male,Families,Ahmedabad,3,6101.74,Personal Care
+C00479,39,Male,Professionals,Kolkata,10,1781.56,Fashion
+C00480,39,Female,Families,Kolkata,10,863.24,Kitchen
+C00481,22,Other,Students,Hyderabad,8,1783.07,Fashion
+C00482,39,Female,Families,Mumbai,7,2568.21,Fashion
+C00483,29,Male,Professionals,Hyderabad,8,3679.01,Beverages
+C00484,49,Male,Families,Kolkata,8,1712.57,Fashion
+C00485,28,Female,Professionals,Chennai,3,2430.98,Electronics
+C00486,33,Other,Families,Ahmedabad,6,2517.36,Snacks
+C00487,36,Female,Premium Customers,Kolkata,5,4117.78,Electronics
+C00488,47,Male,Families,Pune,4,1999.89,Kitchen
+C00489,44,Female,Families,Chennai,17,3056.9,Grocery
+C00490,30,Female,Professionals,Chennai,23,1783.55,Fashion
+C00491,37,Male,Premium Customers,Hyderabad,16,5811.85,Electronics
+C00492,56,Male,Premium Customers,Pune,18,4273.66,Home Care
+C00493,43,Male,Families,Ahmedabad,19,4571.47,Kitchen
+C00494,25,Male,Students,Hyderabad,20,3603.33,Kitchen
+C00495,20,Female,Students,Ahmedabad,9,2660.8,Grocery
+C00496,35,Female,Families,Delhi,1,1046.07,Beverages
+C00497,33,Female,Professionals,Kolkata,17,3706.36,Fashion
+C00498,30,Male,Premium Customers,Pune,5,1548.76,Snacks
+C00499,36,Male,Families,Mumbai,11,1979.51,Fashion
+C00500,52,Female,Premium Customers,Pune,19,1735.07,Personal Care
+C00501,50,Female,Families,Delhi,4,4401.35,Home Care
+C00502,25,Female,Students,Delhi,23,2909.59,Snacks
+C00503,25,Male,Professionals,Ahmedabad,1,3789.45,Beverages
+C00504,51,Male,Premium Customers,Ahmedabad,24,3308.89,Fashion
+C00505,35,Male,Professionals,Bengaluru,3,2992.12,Beverages
+C00506,35,Female,Families,Mumbai,24,1369.39,Beverages
+C00507,39,Male,Premium Customers,Hyderabad,21,4707.86,Beverages
+C00508,50,Male,Families,Ahmedabad,23,2009.73,Electronics
+C00509,23,Other,Students,Chennai,20,3625.84,Kitchen
+C00510,39,Male,Premium Customers,Chennai,24,6601.23,Home Care
+C00511,33,Male,Professionals,Kolkata,23,4159.35,Electronics
+C00512,59,Female,Families,Bengaluru,10,3578.23,Grocery
+C00513,20,Female,Students,Chennai,13,2960.71,Electronics
+C00514,18,Female,Students,Bengaluru,1,2390.65,Snacks
+C00515,55,Male,Families,Kolkata,13,1275.2,Electronics
+C00516,31,Male,Professionals,Bengaluru,21,4228.59,Beverages
+C00517,21,Male,Students,Hyderabad,23,1894.24,Beverages
+C00518,44,Male,Families,Mumbai,13,3612.85,Electronics
+C00519,44,Female,Families,Chennai,17,2644.68,Snacks
+C00520,37,Male,Professionals,Kolkata,22,5106.46,Home Care
+C00521,43,Male,Professionals,Delhi,6,2524.76,Beverages
+C00522,22,Male,Students,Pune,6,3619.99,Beverages
+C00523,41,Female,Premium Customers,Pune,13,2293.89,Kitchen
+C00524,59,Male,Premium Customers,Mumbai,20,2244.23,Fashion
+C00525,64,Male,Premium Customers,Chennai,17,6323.35,Fashion
+C00526,43,Male,Families,Pune,4,2756.37,Fashion
+C00527,57,Male,Families,Bengaluru,13,2514.87,Kitchen
+C00528,36,Male,Families,Bengaluru,8,3710.64,Personal Care
+C00529,40,Male,Premium Customers,Bengaluru,6,7294.12,Personal Care
+C00530,35,Female,Professionals,Pune,6,3826.61,Home Care
+C00531,26,Female,Professionals,Pune,10,3181.84,Home Care
+C00532,30,Male,Premium Customers,Mumbai,3,5478.41,Snacks
+C00533,28,Male,Premium Customers,Hyderabad,9,3998.27,Snacks
+C00534,44,Male,Premium Customers,Kolkata,11,2744.5,Beverages
+C00535,21,Male,Students,Pune,1,1255.01,Beverages
+C00536,42,Male,Families,Delhi,23,2410.22,Personal Care
+C00537,25,Male,Students,Hyderabad,10,2153.43,Electronics
+C00538,25,Male,Students,Mumbai,11,2938.46,Home Care
+C00539,31,Male,Premium Customers,Ahmedabad,2,3060.38,Snacks
+C00540,41,Male,Professionals,Chennai,16,4517.66,Personal Care
+C00541,37,Male,Professionals,Delhi,13,3088.15,Snacks
+C00542,58,Female,Families,Kolkata,15,3291.12,Kitchen
+C00543,21,Male,Students,Mumbai,17,2318.37,Fashion
+C00544,40,Male,Premium Customers,Pune,15,1903.78,Electronics
+C00545,36,Female,Professionals,Chennai,20,547.78,Personal Care
+C00546,47,Male,Families,Bengaluru,21,2732.02,Snacks
+C00547,53,Male,Premium Customers,Pune,4,1987.08,Electronics
+C00548,22,Male,Students,Bengaluru,13,2911.55,Electronics
+C00549,44,Male,Professionals,Kolkata,4,4752.06,Personal Care
+C00550,31,Male,Families,Chennai,20,3809.1,Snacks
+C00551,26,Male,Professionals,Bengaluru,13,4270.0,Home Care
+C00552,58,Male,Families,Bengaluru,20,5260.36,Beverages
+C00553,39,Female,Professionals,Ahmedabad,14,3181.93,Snacks
+C00554,31,Female,Families,Kolkata,18,2721.43,Grocery
+C00555,55,Male,Families,Kolkata,21,2232.04,Personal Care
+C00556,20,Other,Students,Mumbai,11,4689.74,Personal Care
+C00557,20,Female,Students,Bengaluru,17,4510.1,Electronics
+C00558,25,Male,Students,Delhi,10,6769.73,Home Care
+C00559,49,Male,Families,Chennai,22,3714.81,Snacks
+C00560,25,Male,Students,Bengaluru,2,1988.97,Grocery
+C00561,31,Female,Professionals,Hyderabad,2,3173.64,Snacks
+C00562,51,Female,Families,Bengaluru,14,5499.5,Kitchen
+C00563,55,Male,Families,Kolkata,24,4474.9,Fashion
+C00564,34,Male,Professionals,Pune,4,4788.44,Fashion
+C00565,28,Female,Families,Delhi,18,4447.12,Kitchen
+C00566,20,Male,Students,Chennai,4,2197.56,Electronics
+C00567,43,Female,Families,Kolkata,14,2731.28,Electronics
+C00568,21,Female,Students,Pune,15,1071.02,Kitchen
+C00569,54,Male,Families,Mumbai,1,3249.47,Snacks
+C00570,41,Male,Professionals,Pune,23,5723.64,Beverages
+C00571,55,Male,Families,Ahmedabad,23,3621.43,Personal Care
+C00572,20,Female,Students,Pune,24,2205.13,Personal Care
+C00573,28,Male,Families,Chennai,15,2996.47,Beverages
+C00574,33,Female,Families,Ahmedabad,19,5758.79,Personal Care
+C00575,40,Male,Families,Kolkata,4,2241.1,Snacks
+C00576,40,Female,Families,Chennai,22,3146.35,Snacks
+C00577,21,Female,Students,Bengaluru,16,1115.0,Kitchen
+C00578,55,Female,Families,Ahmedabad,19,2257.89,Beverages
+C00579,33,Female,Families,Mumbai,6,3199.45,Electronics
+C00580,55,Female,Families,Ahmedabad,8,6308.78,Snacks
+C00581,28,Male,Premium Customers,Bengaluru,6,4213.93,Snacks
+C00582,61,Male,Premium Customers,Ahmedabad,16,1947.44,Snacks
+C00583,31,Male,Premium Customers,Mumbai,22,5501.98,Home Care
+C00584,21,Female,Students,Hyderabad,22,2192.9,Snacks
+C00585,44,Male,Families,Pune,20,3171.77,Kitchen
+C00586,41,Male,Professionals,Mumbai,15,2187.53,Fashion
+C00587,37,Female,Families,Hyderabad,18,7900.44,Beverages
+C00588,29,Female,Professionals,Bengaluru,6,2695.72,Personal Care
+C00589,18,Female,Students,Pune,4,4500.24,Electronics
+C00590,25,Male,Professionals,Ahmedabad,19,3696.33,Fashion
+C00591,42,Male,Premium Customers,Chennai,16,1184.21,Snacks
+C00592,26,Female,Professionals,Kolkata,16,2794.45,Electronics
+C00593,20,Female,Students,Delhi,4,1097.08,Home Care
+C00594,22,Male,Students,Bengaluru,23,1994.14,Fashion
+C00595,27,Male,Professionals,Pune,5,1379.3,Beverages
+C00596,27,Female,Professionals,Pune,7,2453.36,Kitchen
+C00597,34,Male,Families,Pune,18,4716.91,Snacks
+C00598,28,Male,Professionals,Hyderabad,12,3784.58,Home Care
+C00599,19,Female,Students,Pune,10,5455.76,Grocery
+C00600,20,Other,Students,Pune,7,1626.61,Grocery
+C00601,23,Male,Students,Kolkata,5,4091.94,Fashion
+C00602,54,Female,Families,Kolkata,7,1750.98,Personal Care
+C00603,25,Male,Professionals,Kolkata,6,2959.05,Snacks
+C00604,35,Female,Families,Delhi,15,2285.23,Kitchen
+C00605,30,Female,Families,Delhi,14,3281.0,Grocery
+C00606,31,Male,Premium Customers,Hyderabad,22,7592.12,Snacks
+C00607,35,Male,Families,Hyderabad,18,4254.06,Grocery
+C00608,41,Female,Families,Hyderabad,4,3773.45,Home Care
+C00609,21,Male,Students,Delhi,19,3468.83,Fashion
+C00610,30,Female,Professionals,Delhi,1,4133.71,Home Care
+C00611,42,Male,Professionals,Kolkata,18,3353.55,Kitchen
+C00612,24,Female,Students,Kolkata,13,2088.78,Snacks
+C00613,36,Other,Professionals,Chennai,12,1657.06,Grocery
+C00614,44,Male,Professionals,Pune,19,5482.36,Snacks
+C00615,42,Female,Professionals,Hyderabad,5,2112.12,Beverages
+C00616,35,Female,Families,Chennai,23,2357.92,Snacks
+C00617,36,Male,Professionals,Kolkata,23,3426.12,Beverages
+C00618,49,Male,Premium Customers,Pune,23,5175.13,Fashion
+C00619,33,Male,Professionals,Kolkata,1,2066.57,Kitchen
+C00620,40,Male,Families,Ahmedabad,19,2520.41,Fashion
+C00621,33,Male,Families,Chennai,13,4473.61,Home Care
+C00622,43,Male,Families,Hyderabad,23,4241.37,Personal Care
+C00623,40,Male,Professionals,Mumbai,6,2887.17,Snacks
+C00624,35,Male,Families,Chennai,3,2097.92,Snacks
+C00625,31,Male,Families,Hyderabad,11,5825.55,Fashion
+C00626,46,Female,Families,Hyderabad,16,1942.82,Grocery
+C00627,34,Female,Professionals,Bengaluru,2,2128.99,Home Care
+C00628,53,Male,Families,Hyderabad,16,4189.19,Grocery
+C00629,21,Male,Students,Chennai,9,2188.07,Personal Care
+C00630,36,Male,Families,Bengaluru,4,2125.77,Home Care
+C00631,42,Female,Professionals,Kolkata,2,1757.23,Personal Care
+C00632,34,Male,Premium Customers,Hyderabad,8,1566.51,Electronics
+C00633,25,Female,Professionals,Bengaluru,13,5190.85,Home Care
+C00634,37,Female,Families,Hyderabad,20,7351.56,Kitchen
+C00635,63,Male,Premium Customers,Chennai,14,3476.94,Home Care
+C00636,52,Male,Families,Delhi,12,3154.63,Kitchen
+C00637,25,Male,Professionals,Pune,20,4057.29,Snacks
+C00638,41,Female,Professionals,Pune,16,4021.14,Personal Care
+C00639,50,Male,Families,Mumbai,6,3988.63,Electronics
+C00640,38,Female,Professionals,Ahmedabad,19,2187.36,Beverages
+C00641,40,Female,Families,Mumbai,10,1855.03,Grocery
+C00642,42,Other,Premium Customers,Chennai,23,7906.82,Snacks
+C00643,25,Male,Professionals,Chennai,14,3280.03,Fashion
+C00644,29,Female,Professionals,Ahmedabad,19,3056.4,Grocery
+C00645,53,Female,Premium Customers,Ahmedabad,22,3806.05,Snacks
+C00646,40,Male,Families,Mumbai,1,5420.42,Grocery
+C00647,37,Female,Families,Bengaluru,4,3141.7,Snacks
+C00648,30,Female,Families,Ahmedabad,3,2449.41,Kitchen
+C00649,56,Male,Families,Hyderabad,24,3766.04,Beverages
+C00650,36,Male,Professionals,Kolkata,6,4844.27,Kitchen
+C00651,37,Female,Professionals,Bengaluru,24,2729.22,Home Care
+C00652,23,Female,Students,Chennai,1,1681.63,Kitchen
+C00653,58,Male,Families,Hyderabad,6,3432.72,Snacks
+C00654,39,Male,Professionals,Hyderabad,24,893.48,Electronics
+C00655,25,Female,Students,Ahmedabad,17,7675.44,Fashion
+C00656,24,Female,Professionals,Kolkata,2,2154.4,Home Care
+C00657,40,Male,Premium Customers,Chennai,8,5223.76,Beverages
+C00658,18,Female,Students,Pune,22,2300.74,Electronics
+C00659,34,Female,Families,Hyderabad,1,4120.04,Personal Care
+C00660,33,Female,Professionals,Hyderabad,10,3108.27,Home Care
+C00661,38,Female,Families,Bengaluru,17,2627.38,Kitchen
+C00662,57,Female,Families,Bengaluru,4,3251.32,Fashion
+C00663,23,Female,Professionals,Hyderabad,20,3735.63,Home Care
+C00664,41,Female,Families,Kolkata,12,1631.25,Grocery
+C00665,25,Male,Professionals,Chennai,22,3514.23,Electronics
+C00666,31,Female,Professionals,Hyderabad,16,5281.7,Fashion
+C00667,25,Male,Students,Hyderabad,12,1768.19,Beverages
+C00668,21,Female,Students,Pune,5,3129.01,Fashion
+C00669,22,Female,Students,Bengaluru,16,1677.73,Personal Care
+C00670,41,Female,Premium Customers,Kolkata,7,2392.25,Electronics
+C00671,38,Female,Premium Customers,Kolkata,19,2096.19,Beverages
+C00672,27,Female,Professionals,Pune,9,1982.47,Electronics
+C00673,33,Male,Families,Kolkata,23,3944.16,Kitchen
+C00674,23,Male,Professionals,Chennai,23,4183.95,Kitchen
+C00675,43,Other,Families,Kolkata,16,3067.99,Beverages
+C00676,30,Male,Families,Bengaluru,1,3706.97,Kitchen
+C00677,56,Male,Families,Ahmedabad,6,4750.87,Kitchen
+C00678,57,Female,Families,Pune,17,4013.57,Snacks
+C00679,51,Female,Families,Ahmedabad,15,3157.74,Personal Care
+C00680,23,Female,Students,Bengaluru,2,3796.56,Grocery
+C00681,49,Male,Families,Bengaluru,1,848.99,Grocery
+C00682,38,Male,Families,Hyderabad,13,1547.36,Fashion
+C00683,26,Male,Premium Customers,Delhi,24,3613.81,Grocery
+C00684,19,Other,Students,Ahmedabad,11,2784.03,Beverages
+C00685,45,Female,Families,Delhi,5,1435.34,Grocery
+C00686,39,Male,Professionals,Delhi,18,9220.09,Personal Care
+C00687,24,Female,Students,Delhi,5,3365.48,Beverages
+C00688,49,Female,Premium Customers,Pune,17,2470.92,Beverages
+C00689,39,Female,Families,Hyderabad,24,551.05,Snacks
+C00690,53,Male,Families,Delhi,4,3514.08,Fashion
+C00691,23,Male,Students,Hyderabad,10,4209.16,Fashion
+C00692,29,Male,Professionals,Ahmedabad,20,4235.17,Beverages
+C00693,28,Female,Families,Chennai,20,2274.4,Personal Care
+C00694,53,Other,Families,Pune,12,4923.3,Home Care
+C00695,57,Male,Families,Bengaluru,21,3177.64,Personal Care
+C00696,19,Other,Students,Kolkata,13,4944.62,Personal Care
+C00697,41,Female,Families,Delhi,8,4017.12,Personal Care
+C00698,41,Male,Professionals,Chennai,14,2766.23,Electronics
+C00699,30,Female,Professionals,Ahmedabad,19,2232.14,Snacks
+C00700,32,Female,Families,Mumbai,5,2861.3,Kitchen
+C00701,36,Female,Families,Chennai,6,1689.15,Home Care
+C00702,52,Female,Families,Ahmedabad,10,2280.51,Electronics
+C00703,33,Female,Families,Pune,2,7040.3,Beverages
+C00704,20,Male,Students,Mumbai,1,7359.98,Beverages
+C00705,52,Other,Families,Chennai,19,5632.82,Grocery
+C00706,33,Male,Families,Mumbai,11,5790.66,Fashion
+C00707,43,Female,Professionals,Chennai,20,6428.6,Personal Care
+C00708,21,Female,Students,Ahmedabad,22,4543.63,Electronics
+C00709,48,Male,Premium Customers,Hyderabad,1,4291.76,Electronics
+C00710,21,Male,Students,Bengaluru,23,2443.56,Fashion
+C00711,30,Female,Premium Customers,Pune,7,3528.95,Snacks
+C00712,55,Male,Families,Ahmedabad,12,2300.29,Personal Care
+C00713,32,Female,Professionals,Mumbai,23,2428.46,Personal Care
+C00714,29,Male,Professionals,Chennai,2,2540.64,Snacks
+C00715,56,Female,Families,Pune,24,1411.94,Electronics
+C00716,32,Male,Professionals,Hyderabad,11,3556.1,Home Care
+C00717,31,Female,Families,Bengaluru,5,5147.25,Beverages
+C00718,49,Male,Families,Delhi,24,2030.25,Fashion
+C00719,57,Male,Families,Mumbai,3,2975.34,Snacks
+C00720,24,Male,Students,Mumbai,12,3111.41,Beverages
+C00721,24,Female,Students,Ahmedabad,12,3898.24,Fashion
+C00722,36,Male,Families,Chennai,13,4536.92,Home Care
+C00723,37,Male,Professionals,Kolkata,7,3707.43,Fashion
+C00724,37,Male,Professionals,Chennai,6,1449.59,Home Care
+C00725,45,Male,Premium Customers,Chennai,17,3052.41,Fashion
+C00726,20,Male,Students,Chennai,4,3906.99,Personal Care
+C00727,27,Male,Professionals,Hyderabad,9,3973.45,Electronics
+C00728,55,Female,Families,Chennai,2,3525.82,Beverages
+C00729,43,Male,Professionals,Ahmedabad,9,3939.36,Fashion
+C00730,39,Female,Premium Customers,Chennai,19,2269.15,Kitchen
+C00731,35,Male,Families,Kolkata,12,2386.05,Home Care
+C00732,43,Male,Professionals,Mumbai,23,4340.83,Kitchen
+C00733,37,Male,Professionals,Ahmedabad,12,1425.96,Beverages
+C00734,29,Female,Professionals,Hyderabad,16,6805.5,Electronics
+C00735,49,Male,Families,Mumbai,9,4626.13,Kitchen
+C00736,25,Male,Students,Pune,15,3505.2,Beverages
+C00737,44,Female,Families,Ahmedabad,15,3203.02,Snacks
+C00738,34,Female,Professionals,Mumbai,22,4614.78,Personal Care
+C00739,24,Male,Students,Delhi,12,3929.09,Kitchen
+C00740,21,Male,Students,Delhi,16,1182.54,Home Care
+C00741,40,Male,Families,Pune,4,3439.48,Personal Care
+C00742,31,Male,Premium Customers,Chennai,4,5314.97,Fashion
+C00743,35,Male,Professionals,Bengaluru,10,2642.63,Snacks
+C00744,45,Male,Premium Customers,Delhi,17,2146.69,Grocery
+C00745,19,Male,Students,Kolkata,20,2459.61,Electronics
+C00746,41,Female,Professionals,Hyderabad,13,3902.48,Grocery
+C00747,34,Female,Premium Customers,Hyderabad,1,3681.63,Snacks
+C00748,58,Male,Families,Pune,23,3368.29,Home Care
+C00749,19,Male,Students,Hyderabad,19,2401.07,Grocery
+C00750,37,Female,Families,Hyderabad,8,2966.05,Kitchen
+C00751,21,Male,Students,Chennai,24,1794.41,Kitchen
+C00752,43,Female,Professionals,Kolkata,9,2805.64,Kitchen
+C00753,46,Female,Families,Kolkata,18,3304.26,Snacks
+C00754,29,Male,Professionals,Chennai,4,8726.51,Snacks
+C00755,22,Female,Students,Hyderabad,19,3205.73,Grocery
+C00756,38,Male,Families,Hyderabad,1,2141.21,Fashion
+C00757,25,Female,Professionals,Mumbai,13,1145.86,Grocery
+C00758,22,Female,Students,Kolkata,7,4245.09,Beverages
+C00759,44,Female,Families,Delhi,8,6407.15,Beverages
+C00760,20,Male,Students,Mumbai,9,4300.3,Kitchen
+C00761,45,Male,Families,Delhi,4,2587.78,Beverages
+C00762,49,Male,Families,Ahmedabad,20,4870.86,Kitchen
+C00763,25,Male,Students,Kolkata,12,3387.27,Personal Care
+C00764,42,Female,Premium Customers,Kolkata,12,3526.34,Personal Care
+C00765,31,Female,Professionals,Delhi,23,2903.05,Home Care
+C00766,57,Male,Families,Kolkata,14,3263.63,Home Care
+C00767,25,Female,Professionals,Pune,10,1466.48,Beverages
+C00768,24,Female,Students,Delhi,6,3133.57,Fashion
+C00769,54,Female,Families,Chennai,24,1543.07,Fashion
+C00770,34,Male,Professionals,Chennai,4,1005.43,Home Care
+C00771,39,Male,Professionals,Hyderabad,3,2318.98,Snacks
+C00772,42,Male,Families,Mumbai,3,4459.55,Personal Care
+C00773,47,Female,Families,Chennai,9,3516.04,Beverages
+C00774,25,Male,Students,Ahmedabad,13,2060.73,Fashion
+C00775,33,Female,Professionals,Chennai,24,6747.36,Kitchen
+C00776,29,Male,Professionals,Pune,9,3888.39,Personal Care
+C00777,40,Male,Professionals,Delhi,7,2688.15,Kitchen
+C00778,23,Male,Students,Ahmedabad,22,1204.52,Kitchen
+C00779,56,Female,Families,Hyderabad,20,4647.09,Beverages
+C00780,48,Female,Families,Mumbai,10,2419.1,Snacks
+C00781,45,Male,Families,Ahmedabad,22,2759.31,Home Care
+C00782,27,Female,Professionals,Chennai,7,9080.25,Fashion
+C00783,57,Male,Families,Mumbai,7,2690.06,Kitchen
+C00784,48,Female,Families,Bengaluru,16,2419.87,Grocery
+C00785,63,Other,Premium Customers,Mumbai,24,3776.31,Beverages
+C00786,18,Female,Students,Kolkata,6,3024.09,Snacks
+C00787,24,Female,Students,Hyderabad,3,1349.91,Snacks
+C00788,25,Male,Professionals,Bengaluru,18,3683.37,Home Care
+C00789,27,Female,Professionals,Bengaluru,6,3579.27,Electronics
+C00790,30,Female,Premium Customers,Mumbai,10,4276.66,Beverages
+C00791,40,Female,Families,Kolkata,12,3021.34,Fashion
+C00792,22,Male,Students,Kolkata,13,2606.51,Kitchen
+C00793,24,Female,Professionals,Pune,6,3759.65,Home Care
+C00794,44,Female,Professionals,Ahmedabad,24,1413.74,Beverages
+C00795,45,Male,Families,Ahmedabad,9,3579.26,Fashion
+C00796,40,Male,Families,Pune,7,2807.41,Fashion
+C00797,23,Male,Students,Pune,14,3173.28,Personal Care
+C00798,50,Female,Families,Bengaluru,7,4066.67,Grocery
+C00799,23,Male,Students,Hyderabad,21,2327.15,Grocery
+C00800,20,Female,Students,Bengaluru,6,3572.57,Beverages
+C00801,50,Female,Families,Pune,5,4345.99,Grocery
+C00802,23,Male,Professionals,Chennai,9,3260.65,Electronics
+C00803,51,Male,Families,Delhi,13,3945.03,Fashion
+C00804,20,Female,Students,Pune,15,2468.37,Grocery
+C00805,23,Female,Professionals,Mumbai,4,1773.16,Kitchen
+C00806,47,Female,Premium Customers,Kolkata,3,4177.65,Fashion
+C00807,36,Female,Families,Ahmedabad,4,2762.2,Home Care
+C00808,52,Female,Premium Customers,Delhi,24,4698.03,Snacks
+C00809,59,Male,Families,Ahmedabad,11,1200.62,Home Care
+C00810,21,Male,Students,Delhi,21,1695.63,Personal Care
+C00811,34,Male,Families,Bengaluru,21,2402.94,Personal Care
+C00812,36,Male,Families,Hyderabad,5,7177.82,Beverages
+C00813,42,Male,Professionals,Hyderabad,19,2771.61,Beverages
+C00814,34,Female,Professionals,Pune,23,3475.48,Fashion
+C00815,41,Other,Premium Customers,Bengaluru,9,2227.32,Personal Care
+C00816,18,Male,Students,Chennai,18,2020.53,Home Care
+C00817,31,Female,Families,Hyderabad,17,4772.45,Fashion
+C00818,27,Male,Premium Customers,Pune,10,2911.02,Grocery
+C00819,40,Male,Families,Pune,1,3968.39,Home Care
+C00820,19,Female,Students,Pune,5,2558.92,Personal Care
+C00821,53,Male,Families,Pune,9,2143.3,Electronics
+C00822,26,Male,Professionals,Chennai,7,2780.82,Fashion
+C00823,42,Female,Families,Bengaluru,13,3013.21,Beverages
+C00824,19,Female,Students,Mumbai,2,2423.89,Kitchen
+C00825,25,Female,Professionals,Pune,24,3572.49,Snacks
+C00826,39,Female,Professionals,Hyderabad,4,6415.43,Home Care
+C00827,47,Male,Families,Pune,21,5678.72,Beverages
+C00828,30,Female,Professionals,Kolkata,9,4286.12,Snacks
+C00829,35,Female,Families,Mumbai,8,2120.7,Snacks
+C00830,40,Male,Professionals,Kolkata,9,1812.8,Beverages
+C00831,32,Female,Families,Chennai,22,2671.95,Personal Care
+C00832,50,Male,Families,Bengaluru,18,3372.95,Grocery
+C00833,44,Female,Families,Bengaluru,6,7068.58,Beverages
+C00834,35,Female,Families,Hyderabad,23,2312.82,Electronics
+C00835,63,Female,Premium Customers,Pune,22,2204.0,Fashion
+C00836,40,Female,Professionals,Chennai,9,2482.76,Personal Care
+C00837,35,Female,Professionals,Bengaluru,2,2071.79,Snacks
+C00838,25,Female,Students,Kolkata,16,5906.0,Grocery
+C00839,22,Other,Students,Hyderabad,4,4752.99,Snacks
+C00840,22,Female,Students,Chennai,9,1793.48,Snacks
+C00841,38,Female,Families,Pune,3,2213.31,Kitchen
+C00842,32,Female,Professionals,Ahmedabad,10,3758.8,Fashion
+C00843,23,Female,Students,Ahmedabad,3,2431.15,Fashion
+C00844,28,Male,Families,Pune,18,5621.4,Home Care
+C00845,54,Male,Families,Ahmedabad,12,2409.06,Home Care
+C00846,54,Male,Families,Delhi,3,4065.21,Electronics
+C00847,29,Male,Premium Customers,Mumbai,5,4166.77,Grocery
+C00848,23,Male,Professionals,Pune,5,3307.61,Grocery
+C00849,18,Male,Students,Bengaluru,7,3836.73,Beverages
+C00850,22,Female,Students,Delhi,6,2185.19,Beverages
+C00851,25,Female,Professionals,Mumbai,5,3847.39,Personal Care
+C00852,52,Other,Families,Delhi,5,1420.55,Electronics
+C00853,48,Female,Families,Chennai,24,4207.88,Grocery
+C00854,19,Female,Students,Ahmedabad,18,2105.09,Grocery
+C00855,25,Female,Students,Ahmedabad,15,1932.39,Fashion
+C00856,59,Female,Families,Delhi,18,2452.13,Fashion
+C00857,51,Female,Families,Bengaluru,7,3722.19,Home Care
+C00858,25,Male,Students,Bengaluru,18,5341.63,Grocery
+C00859,44,Female,Families,Mumbai,17,3041.09,Home Care
+C00860,41,Female,Professionals,Ahmedabad,13,2480.76,Fashion
+C00861,23,Female,Professionals,Pune,17,5177.18,Electronics
+C00862,32,Female,Families,Hyderabad,4,3610.19,Electronics
+C00863,38,Female,Professionals,Mumbai,16,2819.13,Personal Care
+C00864,43,Other,Professionals,Delhi,16,2130.59,Personal Care
+C00865,36,Female,Families,Chennai,6,2187.39,Electronics
+C00866,23,Other,Professionals,Chennai,2,1905.07,Beverages
+C00867,41,Female,Families,Kolkata,24,8346.32,Home Care
+C00868,18,Female,Students,Delhi,16,3611.53,Snacks
+C00869,42,Male,Premium Customers,Chennai,9,1979.86,Fashion
+C00870,23,Female,Students,Mumbai,21,2889.1,Grocery
+C00871,31,Female,Families,Mumbai,12,2120.57,Snacks
+C00872,37,Female,Professionals,Mumbai,12,4416.94,Beverages
+C00873,55,Male,Families,Mumbai,8,3057.12,Home Care
+C00874,57,Female,Families,Pune,10,4137.26,Personal Care
+C00875,24,Male,Students,Delhi,11,3497.01,Home Care
+C00876,42,Male,Families,Pune,21,2598.71,Home Care
+C00877,55,Female,Families,Hyderabad,19,2169.92,Home Care
+C00878,18,Male,Students,Hyderabad,17,3334.59,Snacks
+C00879,39,Male,Families,Bengaluru,15,5560.15,Grocery
+C00880,36,Male,Professionals,Hyderabad,14,2299.4,Fashion
+C00881,51,Male,Families,Ahmedabad,15,2911.22,Electronics
+C00882,18,Female,Students,Delhi,11,3580.16,Beverages
+C00883,37,Male,Families,Chennai,10,2668.24,Beverages
+C00884,30,Female,Professionals,Chennai,21,1320.83,Grocery
+C00885,30,Male,Professionals,Kolkata,5,1848.82,Kitchen
+C00886,29,Male,Professionals,Delhi,14,2973.35,Electronics
+C00887,27,Female,Premium Customers,Kolkata,10,2450.12,Snacks
+C00888,38,Male,Families,Kolkata,7,1852.31,Snacks
+C00889,43,Male,Families,Hyderabad,16,4353.15,Grocery
+C00890,39,Female,Families,Kolkata,23,2001.48,Personal Care
+C00891,58,Female,Families,Mumbai,15,1760.89,Fashion
+C00892,23,Female,Students,Chennai,9,4854.95,Electronics
+C00893,25,Female,Students,Mumbai,2,3138.06,Beverages
+C00894,32,Female,Professionals,Kolkata,8,2270.84,Personal Care
+C00895,40,Female,Families,Mumbai,1,1635.59,Grocery
+C00896,27,Male,Professionals,Ahmedabad,10,1834.13,Kitchen
+C00897,49,Female,Families,Hyderabad,3,3042.55,Kitchen
+C00898,29,Male,Families,Mumbai,16,2286.09,Electronics
+C00899,32,Male,Families,Ahmedabad,2,584.21,Personal Care
+C00900,28,Female,Families,Delhi,22,2056.42,Home Care
+C00901,53,Female,Families,Bengaluru,6,2019.26,Grocery
+C00902,42,Male,Professionals,Pune,8,2111.35,Grocery
+C00903,60,Female,Premium Customers,Bengaluru,14,812.82,Fashion
+C00904,44,Male,Professionals,Pune,12,4504.86,Snacks
+C00905,47,Male,Families,Pune,11,1693.83,Beverages
+C00906,54,Male,Families,Kolkata,23,2850.77,Grocery
+C00907,35,Male,Professionals,Kolkata,4,6079.67,Personal Care
+C00908,35,Female,Professionals,Bengaluru,15,3287.86,Personal Care
+C00909,50,Female,Families,Ahmedabad,14,1705.75,Home Care
+C00910,40,Female,Families,Ahmedabad,11,5111.44,Kitchen
+C00911,30,Other,Families,Kolkata,5,5790.3,Electronics
+C00912,18,Female,Students,Hyderabad,14,3006.8,Snacks
+C00913,32,Male,Professionals,Ahmedabad,18,1856.14,Grocery
+C00914,51,Male,Families,Pune,6,4461.02,Personal Care
+C00915,24,Male,Students,Hyderabad,7,3296.18,Personal Care
+C00916,34,Female,Families,Ahmedabad,6,3235.67,Electronics
+C00917,52,Male,Families,Bengaluru,16,3723.77,Fashion
+C00918,42,Female,Professionals,Mumbai,10,3329.5,Snacks
+C00919,50,Male,Families,Mumbai,16,5099.42,Electronics
+C00920,20,Female,Students,Pune,7,1862.46,Personal Care
+C00921,34,Male,Families,Pune,23,7224.44,Kitchen
+C00922,22,Male,Students,Pune,20,1691.78,Grocery
+C00923,59,Female,Premium Customers,Bengaluru,13,2165.2,Snacks
+C00924,39,Female,Professionals,Kolkata,10,5885.54,Kitchen
+C00925,61,Female,Premium Customers,Ahmedabad,22,2915.14,Fashion
+C00926,45,Male,Families,Ahmedabad,19,3180.41,Fashion
+C00927,39,Male,Families,Kolkata,14,1267.82,Grocery
+C00928,61,Female,Premium Customers,Kolkata,7,4423.55,Grocery
+C00929,48,Male,Premium Customers,Delhi,3,2338.11,Personal Care
+C00930,40,Female,Families,Bengaluru,5,3897.09,Fashion
+C00931,58,Female,Families,Kolkata,11,4001.69,Personal Care
+C00932,19,Other,Students,Kolkata,13,3663.35,Kitchen
+C00933,35,Female,Professionals,Hyderabad,11,3991.79,Home Care
+C00934,29,Female,Professionals,Mumbai,11,8058.09,Grocery
+C00935,56,Male,Families,Kolkata,9,2139.99,Kitchen
+C00936,33,Male,Families,Delhi,11,3697.14,Personal Care
+C00937,31,Female,Professionals,Mumbai,17,1026.58,Home Care
+C00938,43,Female,Professionals,Chennai,2,1819.17,Personal Care
+C00939,23,Male,Students,Hyderabad,23,3669.41,Grocery
+C00940,21,Female,Students,Pune,16,4382.26,Snacks
+C00941,39,Female,Premium Customers,Bengaluru,18,2982.12,Grocery
+C00942,23,Male,Professionals,Chennai,14,2096.91,Electronics
+C00943,36,Male,Professionals,Delhi,11,1462.97,Grocery
+C00944,50,Male,Families,Mumbai,2,4489.0,Kitchen
+C00945,18,Male,Students,Pune,1,3360.02,Electronics
+C00946,52,Male,Families,Bengaluru,8,2472.81,Electronics
+C00947,28,Female,Families,Delhi,12,3799.61,Personal Care
+C00948,34,Male,Families,Delhi,20,4548.41,Fashion
+C00949,31,Male,Professionals,Bengaluru,6,3399.63,Snacks
+C00950,25,Male,Professionals,Mumbai,15,4822.27,Grocery
+C00951,34,Male,Families,Bengaluru,20,2031.94,Beverages
+C00952,24,Female,Professionals,Kolkata,6,3457.64,Fashion
+C00953,24,Male,Professionals,Chennai,23,2924.56,Personal Care
+C00954,44,Male,Professionals,Hyderabad,1,4776.01,Personal Care
+C00955,22,Female,Students,Chennai,24,3813.22,Beverages
+C00956,41,Female,Families,Mumbai,19,3286.73,Electronics
+C00957,33,Male,Professionals,Bengaluru,10,2731.02,Kitchen
+C00958,32,Female,Professionals,Mumbai,1,5271.62,Electronics
+C00959,24,Male,Students,Hyderabad,22,2536.27,Grocery
+C00960,47,Female,Families,Delhi,8,3230.71,Beverages
+C00961,38,Male,Families,Pune,19,988.21,Kitchen
+C00962,27,Female,Professionals,Mumbai,5,3755.81,Fashion
+C00963,23,Male,Students,Chennai,1,4062.01,Kitchen
+C00964,40,Male,Professionals,Bengaluru,24,3988.76,Home Care
+C00965,20,Male,Students,Ahmedabad,1,2046.01,Grocery
+C00966,52,Female,Families,Bengaluru,1,3013.74,Snacks
+C00967,31,Male,Professionals,Ahmedabad,9,5010.16,Fashion
+C00968,18,Male,Students,Pune,23,3159.97,Grocery
+C00969,23,Male,Students,Bengaluru,9,4730.38,Beverages
+C00970,60,Female,Premium Customers,Ahmedabad,4,1918.17,Fashion
+C00971,22,Male,Students,Bengaluru,10,3957.24,Beverages
+C00972,43,Female,Professionals,Delhi,20,3923.22,Home Care
+C00973,42,Male,Professionals,Hyderabad,5,3833.47,Grocery
+C00974,38,Male,Professionals,Hyderabad,17,3537.96,Fashion
+C00975,39,Female,Professionals,Bengaluru,8,2110.41,Snacks
+C00976,23,Male,Students,Hyderabad,11,3100.96,Personal Care
+C00977,53,Female,Families,Hyderabad,22,5967.95,Beverages
+C00978,34,Other,Premium Customers,Pune,18,2536.17,Personal Care
+C00979,32,Female,Premium Customers,Chennai,15,4151.07,Fashion
+C00980,29,Male,Premium Customers,Kolkata,6,1892.43,Home Care
+C00981,45,Male,Families,Bengaluru,9,3870.72,Kitchen
+C00982,26,Female,Professionals,Pune,14,2953.0,Snacks
+C00983,44,Male,Families,Chennai,11,5266.59,Grocery
+C00984,31,Male,Premium Customers,Pune,19,2480.49,Kitchen
+C00985,24,Male,Professionals,Hyderabad,13,4391.54,Home Care
+C00986,59,Male,Families,Ahmedabad,9,1637.55,Beverages
+C00987,31,Male,Professionals,Bengaluru,23,3131.55,Electronics
+C00988,35,Female,Premium Customers,Delhi,13,3174.37,Grocery
+C00989,42,Female,Premium Customers,Pune,2,5499.95,Kitchen
+C00990,37,Female,Families,Bengaluru,19,3828.31,Personal Care
+C00991,18,Male,Students,Pune,19,4983.99,Electronics
+C00992,27,Male,Professionals,Delhi,3,1732.04,Personal Care
+C00993,64,Male,Premium Customers,Pune,12,6153.85,Snacks
+C00994,21,Female,Students,Mumbai,13,1801.16,Fashion
+C00995,33,Female,Families,Kolkata,19,6208.96,Grocery
+C00996,43,Male,Professionals,Pune,22,4616.59,Fashion
+C00997,25,Male,Students,Ahmedabad,13,1348.4,Kitchen
+C00998,19,Male,Students,Mumbai,8,3161.45,Electronics
+C00999,48,Male,Families,Pune,11,2087.79,Electronics
+C01000,34,Female,Professionals,Kolkata,23,2683.71,Kitchen

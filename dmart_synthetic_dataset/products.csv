@@ -1,0 +1,101 @@
+product_id,product_name,category,price,cost,margin,margin_pct
+P0001,Chips Premium,Snacks,731.6,546.48,185.12,25.3
+P0002,Atta Pro,Grocery,324.99,228.0,96.99,29.84
+P0003,Air Freshener Value,Home Care,356.66,281.14,75.52,21.17
+P0004,Coffee Daily,Beverages,560.89,342.44,218.45,38.95
+P0005,Detergent Premium,Home Care,149.48,112.4,37.08,24.81
+P0006,Oil Value,Grocery,337.31,226.3,111.01,32.91
+P0007,Spices Plus,Grocery,524.2,390.79,133.41,25.45
+P0008,Shoes Premium,Fashion,184.43,111.81,72.62,39.38
+P0009,Backpack Premium,Fashion,121.01,67.19,53.82,44.48
+P0010,Smart Watch Daily,Electronics,1094.67,848.89,245.78,22.45
+P0011,Toothpaste Daily,Personal Care,381.49,232.76,148.73,38.99
+P0012,Biscuits Daily,Snacks,222.18,137.45,84.73,38.14
+P0013,Juice Value,Beverages,582.69,497.74,84.95,14.58
+P0014,Soft Drinks Pro,Beverages,926.9,803.8,123.1,13.28
+P0015,Biscuits Daily,Snacks,2573.78,2235.42,338.36,13.15
+P0016,Detergent Pro,Home Care,1058.17,685.45,372.72,35.22
+P0017,Rice Plus,Grocery,311.3,171.78,139.52,44.82
+P0018,Tea Plus,Beverages,767.23,622.04,145.19,18.92
+P0019,Dal Value,Grocery,173.97,99.33,74.64,42.9
+P0020,Namkeen Value,Snacks,1079.62,804.46,275.16,25.49
+P0021,T-Shirt Pro,Fashion,628.54,521.78,106.76,16.99
+P0022,Floor Cleaner Plus,Home Care,472.4,299.74,172.66,36.55
+P0023,Floor Cleaner Classic,Home Care,449.99,277.45,172.54,38.34
+P0024,Chocolate Pro,Snacks,254.35,198.27,56.08,22.05
+P0025,Energy Drinks Plus,Beverages,185.23,159.51,25.72,13.89
+P0026,Power Bank Pro,Electronics,571.26,489.46,81.8,14.32
+P0027,Chips Value,Snacks,598.6,366.08,232.52,38.84
+P0028,Backpack Daily,Fashion,623.14,508.77,114.37,18.35
+P0029,Biscuits Daily,Snacks,417.79,288.67,129.12,30.91
+P0030,Namkeen Plus,Snacks,386.5,213.46,173.04,44.77
+P0031,Shampoo Plus,Personal Care,232.11,146.36,85.75,36.94
+P0032,Chocolate Daily,Snacks,948.64,696.47,252.17,26.58
+P0033,Chips Plus,Snacks,276.55,215.65,60.9,22.02
+P0034,Chips Plus,Snacks,281.14,247.19,33.95,12.08
+P0035,Dishwash Classic,Home Care,367.0,243.64,123.36,33.61
+P0036,Juice Premium,Beverages,471.39,341.86,129.53,27.48
+P0037,Backpack Classic,Fashion,293.17,197.01,96.16,32.8
+P0038,Power Bank Premium,Electronics,562.66,396.79,165.87,29.48
+P0039,Floor Cleaner Plus,Home Care,715.73,429.25,286.48,40.03
+P0040,Energy Drinks Daily,Beverages,731.47,609.5,121.97,16.67
+P0041,Smart Watch Daily,Electronics,930.63,618.92,311.71,33.49
+P0042,Backpack Premium,Fashion,763.91,517.64,246.27,32.24
+P0043,Coffee Maker Value,Kitchen,288.97,247.11,41.86,14.49
+P0044,Smart Watch Premium,Electronics,399.08,306.41,92.67,23.22
+P0045,Backpack Daily,Fashion,162.29,94.25,68.04,41.92
+P0046,Air Freshener Classic,Home Care,568.98,431.81,137.17,24.11
+P0047,Tea Classic,Beverages,720.52,607.21,113.31,15.73
+P0048,Smart Watch Daily,Electronics,615.54,528.6,86.94,14.12
+P0049,Backpack Classic,Fashion,136.97,117.83,19.14,13.97
+P0050,Spices Value,Grocery,1133.03,828.34,304.69,26.89
+P0051,Shampoo Pro,Personal Care,836.11,525.32,310.79,37.17
+P0052,Atta Classic,Grocery,256.33,196.61,59.72,23.3
+P0053,Floor Cleaner Value,Home Care,191.66,120.84,70.82,36.95
+P0054,Shoes Plus,Fashion,291.3,245.97,45.33,15.56
+P0055,Shampoo Pro,Personal Care,3390.4,2415.76,974.64,28.75
+P0056,Tea Classic,Beverages,533.92,394.44,139.48,26.12
+P0057,Oil Pro,Grocery,427.6,237.36,190.24,44.49
+P0058,Shampoo Daily,Personal Care,824.2,608.97,215.23,26.11
+P0059,Shoes Plus,Fashion,257.22,164.26,92.96,36.14
+P0060,Rice Value,Grocery,329.24,223.96,105.28,31.98
+P0061,Power Bank Premium,Electronics,223.9,141.92,81.98,36.61
+P0062,T-Shirt Classic,Fashion,1322.57,1097.81,224.76,16.99
+P0063,Power Bank Premium,Electronics,141.64,97.52,44.12,31.15
+P0064,T-Shirt Classic,Fashion,693.68,400.2,293.48,42.31
+P0065,Air Freshener Daily,Home Care,1269.31,1031.46,237.85,18.74
+P0066,Shoes Premium,Fashion,998.6,673.0,325.6,32.61
+P0067,Toothpaste Pro,Personal Care,486.32,354.56,131.76,27.09
+P0068,Mixer Grinder Daily,Kitchen,343.9,192.61,151.29,43.99
+P0069,Spices Daily,Grocery,124.03,102.1,21.93,17.68
+P0070,Energy Drinks Value,Beverages,673.73,472.22,201.51,29.91
+P0071,Oil Pro,Grocery,1602.38,954.47,647.91,40.43
+P0072,Jeans Classic,Fashion,298.01,195.67,102.34,34.34
+P0073,Namkeen Pro,Snacks,287.1,160.31,126.79,44.16
+P0074,Rice Classic,Grocery,461.41,358.61,102.8,22.28
+P0075,Rice Classic,Grocery,169.09,98.24,70.85,41.9
+P0076,Headphones Pro,Electronics,393.24,299.11,94.13,23.94
+P0077,Smart Watch Premium,Electronics,1593.09,901.28,691.81,43.43
+P0078,Chips Pro,Snacks,361.61,213.22,148.39,41.04
+P0079,Sugar Pro,Grocery,410.82,358.74,52.08,12.68
+P0080,Soap Pro,Personal Care,327.61,262.71,64.9,19.81
+P0081,Shampoo Value,Personal Care,2194.67,1241.87,952.8,43.41
+P0082,Dishwash Premium,Home Care,352.74,224.38,128.36,36.39
+P0083,Dishwash Premium,Home Care,4654.23,3610.32,1043.91,22.43
+P0084,Atta Daily,Grocery,530.34,431.86,98.48,18.57
+P0085,Chocolate Daily,Snacks,586.1,481.08,105.02,17.92
+P0086,Chips Plus,Snacks,413.61,316.41,97.2,23.5
+P0087,Energy Drinks Premium,Beverages,341.41,192.17,149.24,43.71
+P0088,Headphones Pro,Electronics,205.91,157.81,48.1,23.36
+P0089,Jeans Premium,Fashion,210.16,149.99,60.17,28.63
+P0090,Headphones Daily,Electronics,280.72,241.16,39.56,14.09
+P0091,Shampoo Plus,Personal Care,279.87,223.25,56.62,20.23
+P0092,Backpack Classic,Fashion,337.81,200.03,137.78,40.79
+P0093,Cookware Pro,Kitchen,567.34,356.71,210.63,37.13
+P0094,Smart Watch Classic,Electronics,1058.21,618.03,440.18,41.6
+P0095,Air Freshener Classic,Home Care,346.67,293.12,53.55,15.45
+P0096,Sugar Daily,Grocery,971.66,824.72,146.94,15.12
+P0097,Chocolate Plus,Snacks,1906.89,1330.98,575.91,30.2
+P0098,Air Freshener Daily,Home Care,1053.91,813.55,240.36,22.81
+P0099,Backpack Pro,Fashion,306.5,224.16,82.34,26.86
+P0100,Headphones Premium,Electronics,496.92,330.85,166.07,33.42

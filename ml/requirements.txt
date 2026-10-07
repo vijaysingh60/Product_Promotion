@@ -1,0 +1,7 @@
+# Installed globally with: pip3 install -r ml/requirements.txt
+# macOS also needs the OpenMP runtime for XGBoost: brew install libomp
+pandas
+scikit-learn
+xgboost
+fastapi
+uvicorn
