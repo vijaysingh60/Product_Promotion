@@ -1,81 +1,229 @@
-// Shared domain types for the Promotion & Inventory Alignment Planner.
+// Shared domain types. Plain data in, plain data out — nothing here depends on React or on the data files.
 
-// Values come from the dataset (dmart_synthetic_dataset/), so these stay plain strings.
-export type Segment = string;
-export type Location = string;
-export type Category = string;
+export const SEGMENT_NAMES = ["Students", "Professionals", "Families", "Premium Customers"] as const;
+export const CITY_NAMES = ["Hyderabad", "Bangalore", "Mumbai", "Delhi", "Chennai"] as const;
+export const CATEGORY_NAMES = [
+  "Audio", "Wearables", "Computers", "Mobiles", "Footwear", "Bags",
+  "Home Entertainment", "Kitchen", "Home Appliances", "Accessories", "Beauty", "Sports",
+] as const;
+
+export type Segment = (typeof SEGMENT_NAMES)[number];
+export type City = (typeof CITY_NAMES)[number];
+export type Category = (typeof CATEGORY_NAMES)[number];
 
 export type RiskLevel = "Low" | "Medium" | "High";
-export type StockStatus = "Healthy" | "Low Stock" | "Critical";
-export type RecommendationStatus = "Recommended" | "Review" | "Not Recommended";
 
+// ------------------------------------------------------------------ data
 export interface Product {
   id: string;
   name: string;
   category: Category;
-  /** List price in INR */
-  price: number;
-  /** Unit cost in INR */
-  cost: number;
-  /** Gross margin at list price, in percent (e.g. 40 = 40%) */
+  /** Cost price (CP), INR per unit */
+  costPrice: number;
+  /** Maximum retail price (MRP), INR per unit — also the no-promotion selling price */
+  mrp: number;
+  /** Gross margin at MRP, percent: (MRP − CP) / MRP */
   margin: number;
+  /** Share of sold units that come back (0–1) */
+  returnRate: number;
 }
 
-export interface Customer {
-  id: string;
-  age: number;
-  gender: string;
-  segment: Segment;
-  location: Location;
-  /** Orders per month */
-  purchaseFrequency: number;
-  /** Average monthly spend in INR */
-  avgMonthlySpend: number;
-  preferredCategory: Category;
-}
-
-/** Stock position of one product at one location. */
+/** Stock of one product in one city. Stock is never shared between cities. */
 export interface Inventory {
   productId: string;
-  location: Location;
-  /** Units currently in stock */
+  city: City;
   stock: number;
-  /** Stock level at which a replenishment order should be placed */
-  reorderLevel: number;
   leadTimeDays: number;
-  /** Baseline predicted demand (units) summed over all customer segments */
-  predictedDemand: number;
+  /** Units sold per day today, all segments together, no promotion running */
+  dailySalesRate: number;
 }
 
+export interface SegmentProfile {
+  segment: Segment;
+  /** 0–1: how strongly demand reacts to a price cut */
+  priceSensitivity: number;
+  /** Marketing messages the segment received in the last 30 days */
+  recentContacts: number;
+  /** 0–1 per category: long-run preference */
+  affinity: Record<Category, number>;
+  /** 0–1 per category: recent browsing / cart activity */
+  intent: Record<Category, number>;
+}
+
+/** Reachable customers per city and segment. Segment-level only — no individual customers. */
+export type SegmentSizes = Record<City, Record<Segment, number>>;
+
+/** A campaign that already ran. */
 export interface Promotion {
   productId: string;
   segment: Segment;
-  location: Location;
-  /** Discount in percent (e.g. 10 = 10%) */
-  discount: number;
-}
-export type PromotionTarget = Omit<Promotion, "discount">;
-
-/** Static features of one product × segment × location (promotion_model_data.csv). */
-export interface ComboFeatures extends PromotionTarget {
-  /** 0–1: how strongly this segment buys this product */
-  affinity: number;
-  /** 0–1: demand strength for this product in this location */
-  regionalDemand: number;
-  /** Average sales uplift (%) of past promotions */
-  historyUpliftPct: number;
-  /** Number of past promotions behind historyUpliftPct (0 = none on record) */
-  historyCount: number;
-  /** Units expected without any promotion */
-  baselineDemand: number;
+  city: City;
+  discountPct: number;
+  /** Sales uplift achieved versus baseline, percent */
+  upliftPct: number;
+  /** ISO date */
+  date: string;
 }
 
-export interface ScoreBreakdown {
-  affinity: number; // 0–25  (CUSTOMER)
-  demand: number; // 0–25  (DEMAND)
-  inventory: number; // 0–20  (INVENTORY)
-  margin: number; // 0–15  (PRODUCT / PROFIT)
-  history: number; // 0–15  (PROMOTION)
+export interface SeasonEntry {
+  month: number; // 1–12
+  label: string;
+  /** Demand multiplier for every product */
+  multiplier: number;
+  /** Extra demand for specific categories, e.g. 0.2 = +20% */
+  categoryBoost: Partial<Record<Category, number>>;
+}
+
+// ----------------------------------------------------------------- config
+/** One place for every tunable business rule. */
+export interface EngineConfig {
+  /** Offer price must stay at or above CP × (1 + this/100) */
+  marginFloorPct: number;
+  /** Share of stock held back as safety stock, percent */
+  safetyStockPct: number;
+  /** Cost of one marketing contact, INR */
+  costPerContact: number;
+  /** Total marketing budget for the plan, INR */
+  marketingBudget: number;
+  /** Discount grid step, percentage points */
+  discountStep: number;
+  /** Expected buyers may use at most this share of safe units, percent */
+  stockCapPct: number;
+  /** Planning window, days */
+  horizonDays: number;
+  /** Month the plan runs in (1–12), drives seasonality */
+  planningMonth: number;
+  /** Demand uncertainty (std. deviation ÷ mean) used for stockout probability */
+  demandCv: number;
+  /** Weight of stockout probability when ranking discounts (0 = ignore) */
+  stockoutPenalty: number;
+  /** Audiences smaller than this are not worth a campaign */
+  minAudience: number;
+  /** Days of cover below which a position is "Stockout risk" */
+  stockoutRiskCoverDays: number;
+  /** Days of cover below which a position is "Low" */
+  lowCoverDays: number;
+  /** Days of cover above which a position is "Overstock" (clearance candidate) */
+  overstockCoverDays: number;
+  /** Monthly cost of holding stock, percent of CP (used to value clearance) */
+  holdingCostPctPerMonth: number;
+}
+
+// ------------------------------------------------------------- model I/O
+export type StockStatus = "Healthy" | "Low" | "Stockout risk" | "Overstock";
+
+// ---------------------------------------------------------------- engine
+export type Verdict = "PROMOTE" | "DON'T PROMOTE" | "PROMOTE ALTERNATIVE";
+export type PromotionKind = "standard" | "clearance";
+export type RejectionCode = "NO_PROFITABLE_DISCOUNT" | "PROTECT_STOCK" | "BOUGHT_ANYWAY" | "COST_EXCEEDS_PROFIT";
+export type UnfundedCode = "BUDGET_EXHAUSTED" | "STOCK_COMMITTED" | "SEGMENT_FATIGUE";
+export type FundingStatus = "funded" | "unfunded" | "rejected";
+
+/** What earlier decisions in the plan have already used up (stock, segment attention, budget). */
+export interface EvalState {
+  /** Extra units already committed by funded promotions on this product in this city */
+  committedUnits: number;
+  /** Campaigns already planned for this segment in this city (adds fatigue) */
+  extraContacts: number;
+  /** Largest audience the remaining budget can pay for */
+  maxAudience?: number;
+}
+
+export interface PriceBand {
+  costPrice: number;
+  mrp: number;
+  /** Lowest legal offer price: CP × (1 + floor) */
+  minOfferPrice: number;
+  /** Highest legal offer price: MRP */
+  maxOfferPrice: number;
+  /** Deepest legal discount, percent (can be ≤ 0 when margin is too thin) */
+  maxDiscountPct: number;
+  /** True when no discount on the grid is legal */
+  isEmpty: boolean;
+  /** Legal discounts on the grid, ascending */
+  discounts: number[];
+}
+
+export interface ProfitBridge {
+  /** Profit from the extra units the discount sells */
+  volume: number;
+  /** Margin given away on customers who would have bought anyway (≤ 0) */
+  giveaway: number;
+  /** Profit lost to units that cannot be served (≤ 0) */
+  stockLoss: number;
+  /** Marketing contact cost (≤ 0) */
+  promoCost: number;
+  /** Value of clearing excess stock (clearance only, ≥ 0) */
+  clearance: number;
+}
+
+/** One candidate discount, fully evaluated. */
+export interface DiscountOption {
+  discountPct: number;
+  offerPrice: number;
+  /** Inside the CP-floor … MRP band */
+  legal: boolean;
+  /** Audience can run (≥ min audience) */
+  viable: boolean;
+  marginAtOfferPct: number;
+
+  /** Share of the segment contacted (0–1) */
+  coverage: number;
+  audience: number;
+  segmentSize: number;
+  limits: { stockCapped: boolean; committedReduced: boolean; budgetCapped: boolean };
+
+  responseProbability: number;
+  fatiguePenalty: number;
+  liftPct: number;
+
+  baselineUnits: number;
+  /** Segment demand with the promotion, before the stock limit */
+  promotedUnits: number;
+  /** Extra units versus baseline, before the stock limit */
+  incrementalUnits: number;
+  unitsServable: number;
+  unitsLost: number;
+
+  baselineRevenue: number;
+  baselineProfit: number;
+  promotedRevenue: number;
+  promotedProfit: number;
+  incrementalRevenue: number;
+  incrementalProfitBeforeCost: number;
+  promoCost: number;
+  clearanceValue: number;
+  /** Incremental profit after promo cost (and clearance value for clearance promotions) */
+  incrementalProfit: number;
+  /** Incremental profit before cost ÷ promo cost */
+  roi: number;
+  bridge: ProfitBridge;
+
+  stockoutProbability: number;
+  remainingStock: number;
+  daysOfCoverAfter: number;
+  risk: RiskLevel;
+  /** Risk-adjusted incremental profit — what the engine maximises */
+  objective: number;
+}
+
+export interface Factors {
+  /** 0–100 each */
+  response: number;
+  demand: number;
+  stockHealth: number;
+  margin: number;
+  /** Fatigue penalty shown as 0–100 (higher = more fatigued) */
+  fatigue: number;
+}
+
+export interface AlternativePick {
+  productId: string;
+  productName: string;
+  discountPct: number;
+  incrementalProfit: number;
+  /** The alternative was itself left out of the plan (budget or stock) */
+  funded: boolean;
 }
 
 export interface Recommendation {
@@ -84,56 +232,100 @@ export interface Recommendation {
   productName: string;
   category: Category;
   segment: Segment;
-  location: Location;
-  price: number;
-  discount: number;
-  inventory: number;
-  reorderLevel: number;
-  score: number; // 0–100
-  risk: RiskLevel;
-  status: RecommendationStatus;
-  /** Units expected without the promotion */
-  baselineDemand: number;
-  /** Predicted sales uplift (%) from the demand model */
-  upliftPct: number;
-  predictedDemand: number;
-  expectedRevenue: number;
-  expectedProfit: number;
-  /** Share of current stock the campaign is expected to consume (0–1+) */
-  stockUsage: number;
-  breakdown: ScoreBreakdown;
+  city: City;
+  kind: PromotionKind;
+  verdict: Verdict;
+  status: FundingStatus;
+  rejection: { code: RejectionCode; headline: string; detail: string } | null;
+  unfunded: { code: UnfundedCode; headline: string } | null;
+  band: PriceBand;
+  /** The plan state this decision was made under (needed to redraw its profit curve faithfully) */
+  evalState: EvalState;
+  /** The option the engine picked (null when no legal, viable option exists) */
+  chosen: DiscountOption | null;
+  /** Every legal, viable option on the grid */
+  options: DiscountOption[];
+  alternative: AlternativePick | null;
+  // position
+  stock: number;
+  safetyStock: number;
+  safeUnits: number;
+  daysOfCover: number;
+  stockStatus: StockStatus;
+  // baseline for this segment, no promotion
+  baselineUnits: number;
+  baselineProfit: number;
+  baselineRevenue: number;
+  /** Segment size in this city */
+  segmentSize: number;
+  // explanation
+  factors: Factors;
   reasons: string[];
   risks: string[];
-}
-
-/** Only what the tables show — keeps the page payload small (the catalogue has thousands of rows). */
-export type RecommendationRow = Pick<
-  Recommendation,
-  | "id" | "productId" | "productName" | "segment" | "location" | "price" | "discount" | "inventory"
-  | "predictedDemand" | "score" | "risk" | "status" | "expectedRevenue" | "expectedProfit"
->;
-
-export interface DiscountAnalysis {
-  best: Recommendation;
-  options: Recommendation[];
+  notes: string[];
   explanation: string;
+  risk: RiskLevel;
 }
 
-export interface ModelInfo {
-  name: string;
-  /** 5-fold cross-validated R² */
-  r2: number;
-  /** 5-fold cross-validated mean absolute error, in uplift percentage points */
-  mae: number;
-  rows: number;
-  trainedAt: string;
+/** Flat row for tables and charts (safe to send to the browser). */
+export interface PlanRow {
+  id: string;
+  productId: string;
+  productName: string;
+  category: Category;
+  segment: Segment;
+  city: City;
+  kind: PromotionKind;
+  verdict: Verdict;
+  status: FundingStatus;
+  discountPct: number | null;
+  audience: number;
+  segmentSize: number;
+  predictedDemand: number;
+  unitsServable: number;
+  unitsLost: number;
+  baselineUnits: number;
+  baselineProfit: number;
+  incrementalProfit: number;
+  incrementalRevenue: number;
+  promoCost: number;
+  roi: number;
+  bridge: ProfitBridge;
+  risk: RiskLevel;
+  stock: number;
+  safeUnits: number;
+  reason: string | null;
+  reasonCode: RejectionCode | UnfundedCode | null;
+  detail: string | null;
+  notes: string[];
+  alternative: AlternativePick | null;
 }
 
-/** Where the uplift numbers on screen came from. */
-export type PredictionSource = { kind: "ml"; model: ModelInfo } | { kind: "fallback" };
+export interface InventoryRow {
+  productId: string;
+  productName: string;
+  category: Category;
+  city: City;
+  stock: number;
+  safetyStock: number;
+  safeUnits: number;
+  /** Baseline demand over the planning window */
+  predictedDemand: number;
+  dailyDemand: number;
+  daysOfCover: number;
+  status: StockStatus;
+  risk: RiskLevel;
+  /** Units the funded plan commits in this position */
+  plannedUnits: number;
+  daysOfCoverAfterPlan: number;
+  inventoryValue: number;
+  leadTimeDays: number;
+}
 
-/** Result of evaluating one target at every discount (what the simulator shows). */
-export interface Simulation {
-  analysis: DiscountAnalysis;
-  source: PredictionSource;
+export interface Plan {
+  config: EngineConfig;
+  candidates: Recommendation[];
+  rows: PlanRow[];
+  inventoryRows: InventoryRow[];
+  budget: { total: number; used: number };
 }

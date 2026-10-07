@@ -1,23 +1,19 @@
-import RecommendationTable from "@/components/RecommendationTable";
-import { Card, ModelStatus, PageHeader } from "@/components/ui";
-import { LOCATIONS, SEGMENTS } from "@/lib/dataset";
-import { getAllRecommendations, toRow } from "@/lib/recommendationEngine";
-
-export const dynamic = "force-dynamic";
+import RecommendationsView from "@/components/RecommendationsView";
+import { PageHeader } from "@/components/ui";
+import { buildPlanFor } from "@/lib/plan";
+import { CATEGORIES, CITIES, SEGMENTS } from "@/lib/mockData";
+import { getConfig } from "@/lib/serverConfig";
 
 export default async function RecommendationsPage() {
-  const { rows, source } = await getAllRecommendations();
+  const config = await getConfig();
+  const plan = buildPlanFor(config);
   return (
     <div>
       <PageHeader
-        title="Promotion Recommendations"
-        subtitle="Every product × segment × location, each with the discount that best balances demand, revenue, profit and inventory risk."
-      >
-        <ModelStatus source={source} />
-      </PageHeader>
-      <Card>
-        <RecommendationTable rows={rows.map(toRow)} detailed segments={SEGMENTS} locations={LOCATIONS} />
-      </Card>
+        title="Recommendations"
+        subtitle="Every product × segment × city, judged on incremental profit. The plan is what fits the budget and the stock; the rest is listed with the reason."
+      />
+      <RecommendationsView rows={plan.rows} cities={[...CITIES]} segments={[...SEGMENTS]} categories={[...CATEGORIES]} />
     </div>
   );
 }

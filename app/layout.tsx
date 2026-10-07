@@ -3,8 +3,8 @@ import Sidebar from "@/components/Sidebar";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Promotion & Inventory Alignment Planner",
-  description: "Decide which product to promote, to which segment, at what discount — aligned with inventory and profit.",
+  title: "PromoPilot — Promotion & Inventory Planner",
+  description: "Decide what to promote, to whom, at what discount — by incremental profit, inside hard price and stock rules.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

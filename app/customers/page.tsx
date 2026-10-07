@@ -1,13 +1,11 @@
-import CustomerSegments from "@/components/CustomerSegments";
+import SegmentsView from "@/components/SegmentsView";
 import { PageHeader } from "@/components/ui";
 
-export const dynamic = "force-dynamic";
-
-export default function CustomersPage() {
+export default function SegmentsPage() {
   return (
     <div>
-      <PageHeader title="Customer Segments" subtitle="Who we are promoting to: size, favourite categories and spending behaviour." />
-      <CustomerSegments />
+      <PageHeader title="Customer segments" subtitle="Segment-level only: how big each segment is, how price-sensitive, and what it wants. No individual customer data." />
+      <SegmentsView />
     </div>
   );
 }

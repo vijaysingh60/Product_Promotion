@@ -1,5 +1,5 @@
 {
-  "name": "promo-planner",
+  "name": "promopilot",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "ml:train": "python3 ml/train.py",
-    "ml:serve": "python3 ml/server.py"
+    "ml:serve": "python3 ml/server.py",
+    "verify": "npx tsx scripts/verify.mts"
   },
   "dependencies": {
     "lucide-react": "^1.52.0",

@@ -1,37 +1,35 @@
 import WhatIfSimulator from "@/components/WhatIfSimulator";
 import { PageHeader } from "@/components/ui";
-import { DISCOUNT_OPTIONS } from "@/lib/calculations";
-import { LOCATIONS, products, SEGMENTS } from "@/lib/dataset";
-import { simulate } from "@/lib/recommendationEngine";
+import { CITIES, products, SEGMENTS } from "@/lib/mockData";
+import { getConfig } from "@/lib/serverConfig";
 
 type Params = Promise<Record<string, string | string[] | undefined>>;
 
 export default async function SimulatorPage({ searchParams }: { searchParams: Params }) {
   const q = await searchParams;
   const one = (k: string) => (Array.isArray(q[k]) ? q[k][0] : q[k]);
+  const config = await getConfig();
 
-  // Optional deep-link from the recommendation details page; otherwise start on the first product.
-  const target = {
-    productId: products.find((p) => p.id === one("product"))?.id ?? products[0].id,
-    segment: SEGMENTS.find((s) => s === one("segment")) ?? SEGMENTS[0],
-    location: LOCATIONS.find((l) => l === one("location")) ?? LOCATIONS[0],
-  };
-  const initial = await simulate(target);
+  // Optional deep-link from a recommendation (?product=&segment=&city=&discount=).
   const asked = Number(one("discount"));
-  const discount = DISCOUNT_OPTIONS.includes(asked) ? asked : initial.analysis.best.discount;
+  const initial = {
+    productId: products.find((p) => p.id === one("product"))?.id ?? "p01",
+    segment: SEGMENTS.find((s) => s === one("segment")) ?? SEGMENTS[0],
+    city: CITIES.find((c) => c === one("city")) ?? CITIES[0],
+    discount: Number.isFinite(asked) && one("discount") ? asked : null,
+  };
 
   return (
     <div>
       <PageHeader
-        title="What-if Simulator"
-        subtitle="Pick a product, segment and location, then change the discount to see how demand, revenue, profit, inventory and risk respond."
+        title="What-if simulator"
+        subtitle="Pick a product, segment and city, then move the discount. The slider stops at the deepest discount that still leaves CP + the margin floor."
       />
       <WhatIfSimulator
-        products={products.map(({ id, name, price }) => ({ id, name, price }))}
-        segments={SEGMENTS}
-        locations={LOCATIONS}
-        initialTarget={target}
-        initialDiscount={discount}
+        config={config}
+        products={products.map(({ id, name, mrp }) => ({ id, name, mrp }))}
+        segments={[...SEGMENTS]}
+        cities={[...CITIES]}
         initial={initial}
       />
     </div>

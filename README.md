@@ -1,74 +1,71 @@
-# Promotion & Inventory Alignment Planner
+# PromoPilot — Promotion & Inventory Planner
 
-Decision-support dashboard: which product to promote, to which customer segment, at what discount,
-given demand, inventory and profit.
-
-Data is the synthetic D-Mart-like dataset in `dmart_synthetic_dataset/` (simulated, not real D-Mart data).
-
-## Run it (two terminals, everything local)
+Decides **what to promote, to which customer segment, in which city, at what discount** — judged on
+**incremental profit** (profit with the promotion minus profit without it), inside hard price and stock rules.
 
 ```bash
-# one-time setup
 npm install
-pip3 install -r ml/requirements.txt     # global install, no virtualenv
-brew install libomp                     # macOS only: OpenMP runtime that XGBoost needs
-
-# terminal 1 — the model
-npm run ml:train      # trains and writes ml/artifacts/ (already done once; rerun when data changes)
-npm run ml:serve      # http://127.0.0.1:8000   (API docs at /docs)
-
-# terminal 2 — the app
-npm run dev           # http://localhost:3000
+npm run dev        # http://localhost:3000
+npm run verify     # checks the engine from the console, no UI
 ```
 
-If the model service is not running the app still works: it falls back to a mock uplift formula and
-shows an amber "ML service offline" badge instead of the green model badge.
+Everything runs in TypeScript. No database, no auth, no external calls.
 
-## How it fits together
+## The rules the engine never breaks
 
-```
-dmart_synthetic_dataset/*.csv ──┬─► ml/train.py ─► ml/artifacts/uplift_model.json
-                                │                        │
-                                │                  ml/server.py  (FastAPI, port 8000)
-                                │                        ▲
-                                └─► lib/dataset.ts       │ HTTP
-                                         │               │
-                                 lib/recommendationEngine.ts ◄─ lib/mlClient.ts
-                                         │
-                                  pages + /api/simulate
-```
-
-| Part | What it does |
+| Rule | Where |
 |---|---|
-| **ML model** (`ml/`) | Predicts **sales uplift %** for a product × segment × location × discount. XGBoost, 100 trees, depth 2. |
-| **Dataset** (`lib/dataset.ts`) | Baseline demand, customer affinity, regional demand, stock, reorder level — read straight from the CSVs. |
-| **Rules** (`lib/recommendationEngine.ts`) | Demand = baseline × (1 + uplift). Then the 0–100 score, risk level, and choice of discount. |
+| Offer price ≥ **CP × 1.05** and ≤ **MRP**. Empty band → rejected: *"No profitable discount available"* | `lib/pricing.ts` |
+| Expected buyers ≤ **80% of safe units**; safe units = stock − **15%** safety stock. No headroom → *"Protect stock"* | `lib/decisionEngine.ts` |
+| Stock is **per city**; a city is never promoted using another city's stock | `lib/mockData.ts`, engine |
+| Decide on **incremental profit**. Negative → *"Customers would have bought anyway"* | engine |
+| Funded promotions never exceed the **marketing budget**, and never double-claim stock | budget allocator |
 
-Pages: `/dashboard`, `/recommendations` (+ `/recommendations/[id]`), `/inventory`, `/customers`, `/simulator`.
+Margin floor, safety-stock %, cost per contact (₹3) and the budget live in **one object**, `lib/config.ts`.
+The four are also editable on the dashboard (**Assumptions** panel); the values are kept in a cookie so every page agrees.
 
-## Model facts (from `npm run ml:train`)
+## How a decision is made
 
-Trained on the 1,200 past promotions in `promotions.csv`, scored with 5-fold cross-validation:
+For each product × segment × city: legal discount band → grid-search in 2.5-point steps → for each discount call the
+response, demand and inventory models → baseline vs promoted → incremental profit (returns netted out, units capped by
+safe stock, stockout probability priced in) → best risk-adjusted option → verdict. Then the allocator ranks the
+`PROMOTE` candidates by incremental profit per ₹ of promo cost and fills the budget, deducting stock as it goes
+(*"audience reduced: 180 units already committed in Hyderabad"*).
 
-| Model | R² | MAE (uplift points) |
+Extras: **clearance** promotions for overstocked slow movers (value of freeing stock counted separately),
+**alternatives** only for rejected candidates (best same-category product that passes), **fatigue** that grows with each
+campaign planned for the same segment.
+
+## Files
+
+```
+lib/config.ts            tunable business rules
+lib/mockData.ts          products, per-city stock, segments, past promotions, seasonality (seeded, no customers)
+lib/pricing.ts           CP/MRP legal band
+lib/models/              responseModel · demandModel · inventoryModel   ← deterministic stubs, swap targets
+lib/decisionEngine.ts    grid search, verdicts, budget allocator, discount curve
+lib/analytics.ts         dashboard numbers and chart series
+scripts/verify.mts       console check of constraints + the three demo cases
+```
+
+Each model file starts with *"Deterministic stub — replace with trained model via API later."* and takes/returns plain
+typed numbers. The engine and UI do not care what is behind them.
+
+## Demo cases (checked by `npm run verify`)
+
+| | Case | Where to look |
 |---|---|---|
-| Predict the mean | 0.00 | 19.6 |
-| Straight line on discount only | 0.826 | 7.70 |
-| **XGBoost, all 8 features (shipped)** | **0.823** | **7.77** |
+| a | High demand + low stock → small audience, small discount, warning | Wireless Headphones · Students · Hyderabad |
+| b | Thin margin (4%) → **rejected**, no profitable discount | Television · any segment · any city |
+| c | Overstocked slow mover → **clearance** promotion | Coffee Maker · Families · Chennai |
 
-In this synthetic dataset uplift depends almost entirely on the discount (98% of the model's gain).
-Category, segment, location, price and affinity add no measurable signal, so XGBoost only matches a
-straight line. The pipeline is the point: with real data the same features can carry real signal.
+## Not built, on purpose
 
-## Known limitations
+No per-customer targeting, no training in this layer, no competitor pricing, no multi-warehouse allocation,
+no LLM calls (explanations are templates), no auth, no database.
 
-- **Baseline demand is not modelled.** It comes from the dataset's `dummy_predicted_demand` column.
-- **Score weights and thresholds are hand-set business rules**, not learned (`MAX_POINTS`, `RECOMMEND_SCORE`,
-  `REVIEW_SCORE`, `campaignRisk`).
-- **Inventory status uses the reorder level**, not "demand > stock": summed over the four segments,
-  predicted demand exceeds stock for every product and location in this dataset.
+## About `ml/` and `dmart_synthetic_dataset/`
 
-## Swapping the dataset
-
-Put CSVs with the same columns in `dmart_synthetic_dataset/` (or set `DATA_DIR` for both the app and the
-ML scripts), run `npm run ml:train`, restart `npm run ml:serve` and the app.
+The earlier XGBoost uplift service (`ml/`, `npm run ml:serve`) and its dataset are still on disk but **the app no longer
+calls them**. They were trained on a different schema (no MRP, seasonality, daily sales rate…). The intended seam for a
+trained model is `lib/models/demandModel.ts`; see the notes in the project hand-off for what it takes.
