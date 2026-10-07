@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Boxes, Database, FlaskConical, LayoutDashboard, ListChecks, Plane, Users } from "lucide-react";
-import type { DataSource } from "@/types";
+import { Boxes, FlaskConical, LayoutDashboard, ListChecks, Plane, Users } from "lucide-react";
 
 const NAV = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -13,7 +12,7 @@ const NAV = [
   { href: "/simulator", label: "What-if Simulator", icon: FlaskConical },
 ];
 
-export default function Sidebar({ source }: { source: DataSource }) {
+export default function Sidebar() {
   const pathname = usePathname();
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
 
@@ -41,20 +40,7 @@ export default function Sidebar({ source }: { source: DataSource }) {
             </Link>
           ))}
         </nav>
-        <div
-          title={source.kind === "mongodb" ? `Reading from MongoDB database "${source.database}"` : `Using the bundled demo data: ${source.reason}. Run "npm run seed" once MongoDB is reachable.`}
-          className={`mt-auto flex items-start gap-2 rounded-lg p-3 text-xs leading-snug ${source.kind === "mongodb" ? "bg-emerald-900/40 text-emerald-200" : "bg-amber-900/40 text-amber-200"}`}
-        >
-          <Database size={14} className="mt-0.5 shrink-0" />
-          <div>
-            {source.kind === "mongodb" ? (
-              <><div className="font-semibold">MongoDB</div><div className="opacity-80">database: {source.database}</div></>
-            ) : (
-              <><div className="font-semibold">Demo data</div><div className="opacity-80">MongoDB not in use: {source.reason}</div></>
-            )}
-          </div>
-        </div>
-        <div className="mt-3 rounded-lg bg-slate-800 p-3 text-xs leading-relaxed text-slate-400">
+        <div className="mt-auto rounded-lg bg-slate-800 p-3 text-xs leading-relaxed text-slate-400">
           Decisions are made on <span className="text-slate-200">incremental profit</span> inside hard price and stock rules.
           Demand, response and inventory models are deterministic stubs, ready to be replaced by trained models.
         </div>
