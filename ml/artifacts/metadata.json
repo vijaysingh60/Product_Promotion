@@ -1,0 +1,75 @@
+{
+  "name": "XGBoost uplift model",
+  "target": "sales_uplift_pct",
+  "features": [
+    "discount_pct",
+    "price",
+    "margin_pct",
+    "customer_affinity",
+    "regional_demand_score",
+    "category",
+    "customer_segment",
+    "location"
+  ],
+  "levels": {
+    "category": [
+      "Beverages",
+      "Electronics",
+      "Fashion",
+      "Grocery",
+      "Home Care",
+      "Kitchen",
+      "Personal Care",
+      "Snacks"
+    ],
+    "customer_segment": [
+      "Families",
+      "Premium Customers",
+      "Professionals",
+      "Students"
+    ],
+    "location": [
+      "Ahmedabad",
+      "Bengaluru",
+      "Chennai",
+      "Delhi",
+      "Hyderabad",
+      "Kolkata",
+      "Mumbai",
+      "Pune"
+    ]
+  },
+  "discounts": [
+    5,
+    10,
+    15,
+    20,
+    25,
+    30
+  ],
+  "rows": 1200,
+  "r2": 0.8226,
+  "mae": 7.77,
+  "baselines": {
+    "predict the mean": {
+      "r2": -0.0029,
+      "mae": 19.63
+    },
+    "straight line on discount only": {
+      "r2": 0.8257,
+      "mae": 7.7
+    }
+  },
+  "importance": {
+    "discount_pct": 0.9829,
+    "price": 0.0036,
+    "margin_pct": 0.0003,
+    "customer_affinity": 0.0039,
+    "regional_demand_score": 0.0021,
+    "category": 0.0035,
+    "customer_segment": 0.001,
+    "location": 0.0026
+  },
+  "trainedAt": "2026-10-07T07:29:20+00:00",
+  "xgboostVersion": "3.4.1"
+}
