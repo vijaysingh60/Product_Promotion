@@ -1,6 +1,6 @@
 "use client";
 
-import { Bar, BarChart, Cell, CartesianGrid, Legend, Pie, PieChart, ResponsiveContainer, Scatter, ScatterChart, Tooltip, XAxis, YAxis, ZAxis } from "recharts";
+import { Bar, BarChart, Cell, CartesianGrid, LabelList, Legend, Pie, PieChart, ResponsiveContainer, Scatter, ScatterChart, Tooltip, XAxis, YAxis, ZAxis } from "recharts";
 import { formatINR, formatINRCompact, formatNumber } from "@/lib/format";
 import type { GroupPoint, ScatterPoint, StockDemandPoint, WaterfallStep } from "@/lib/analytics";
 import type { RiskLevel } from "@/types";
@@ -18,7 +18,7 @@ function Empty() {
 }
 
 export interface ChartData {
-  waterfall: { steps: WaterfallStep[]; axisMin: number };
+  waterfall: { steps: WaterfallStep[]; axisMin: number; axisMax: number; ticks: number[] };
   byCity: GroupPoint[];
   bySegment: GroupPoint[];
   top: GroupPoint[];
@@ -40,11 +40,13 @@ export default function DashboardCharts({ data }: { data: ChartData }) {
             <BarChart data={data.waterfall.steps} margin={{ left: 8 }}>
               {grid}
               <XAxis dataKey="name" tick={{ ...tick, fontSize: 10 }} interval={0} angle={-25} textAnchor="end" height={58} />
-              <YAxis tick={tick} domain={[data.waterfall.axisMin, "auto"]} tickFormatter={compact} allowDataOverflow />
+              <YAxis tick={tick} domain={[data.waterfall.axisMin, data.waterfall.axisMax]} ticks={data.waterfall.ticks} tickFormatter={compact} allowDataOverflow />
               <Tooltip formatter={(_v, _n, item) => money((item.payload as WaterfallStep).delta)} />
               <Bar dataKey="base" stackId="w" fill="transparent" isAnimationActive={false} />
               <Bar dataKey="value" stackId="w" isAnimationActive={false} radius={[3, 3, 0, 0]}>
                 {data.waterfall.steps.map((s) => <Cell key={s.name} fill={stepColor(s)} />)}
+                {/* Label every bar so the thin steps (stockout loss, clearance) are still readable. */}
+                <LabelList dataKey="label" position="top" fontSize={10} fill="#334155" />
               </Bar>
             </BarChart>
           </ResponsiveContainer>
