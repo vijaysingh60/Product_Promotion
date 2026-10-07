@@ -15,12 +15,13 @@
 // Then the budget allocator fills the marketing budget greedily by incremental profit per ₹ of promo cost,
 // deducting stock as it goes so two segments never claim the same units.
 
-import { buildId, CATEGORY_ELASTICITY, CITIES, getInventory, getProduct, getSegmentProfile, historyFor, inventory, products, seasonFor, SEGMENTS, segmentSizes } from "./mockData";
+import { buildId, type IndexedData } from "./dataset";
+import { CATEGORY_ELASTICITY, demandModel, type DemandInput } from "./models/demandModel";
 import { formatINR, formatNumber } from "./format";
 import { isLegalDiscount, marginAtOfferPct, offerPrice, priceBand } from "./pricing";
-import { demandModel, type DemandInput } from "./models/demandModel";
 import { classifyStock, inventoryModel, type InventoryOutput } from "./models/inventoryModel";
 import { responseModel } from "./models/responseModel";
+import { CITY_NAMES, SEGMENT_NAMES } from "../types";
 import type {
   AlternativePick, City, DiscountOption, EngineConfig, EvalState, Factors, InventoryRow, Plan, PlanRow, Product,
   PromotionKind, Recommendation, RejectionCode, RiskLevel, Segment, SegmentProfile, UnfundedCode,
@@ -50,6 +51,7 @@ export const UNFUNDED_HEADLINE: Record<UnfundedCode, string> = {
 // ------------------------------------------------------------------ context
 interface Context {
   cfg: EngineConfig;
+  data: IndexedData;
   key: CandidateKey;
   product: Product;
   profile: SegmentProfile;
@@ -61,6 +63,8 @@ interface Context {
   segmentShare: number;
   elasticity: number;
   history: { avgUpliftPct: number | null; campaigns: number };
+  /** Units per day as recorded, season not applied */
+  rawDailyRate: number;
   /** Units per day, season included */
   dailyRate: number;
   /** Units over the horizon, all segments, no promotion */
@@ -71,19 +75,19 @@ interface Context {
   kind: PromotionKind;
 }
 
-function buildContext(key: CandidateKey, cfg: EngineConfig): Context {
-  const product = getProduct(key.productId);
-  const inv = getInventory(key.productId, key.city);
-  const profile = getSegmentProfile(key.segment);
+function buildContext(key: CandidateKey, cfg: EngineConfig, data: IndexedData): Context {
+  const product = data.product(key.productId);
+  const inv = data.inventoryAt(key.productId, key.city);
+  const profile = data.profile(key.segment);
   if (!product || !inv || !profile) throw new Error(`Unknown candidate: ${key.productId} / ${key.segment} / ${key.city}`);
 
-  const season = seasonFor(cfg.planningMonth, product.category);
+  const season = data.season(cfg.planningMonth, product.category);
   const dailyRate = inv.dailySalesRate * season.multiplier;
   const baselineAll = dailyRate * cfg.horizonDays;
 
   // This segment's share of the product's sales in the city ∝ customers × affinity.
-  const weight = (s: Segment) => segmentSizes[key.city][s] * (getSegmentProfile(s)?.affinity[product.category] ?? 0);
-  const total = SEGMENTS.reduce((sum, s) => sum + weight(s), 0);
+  const weight = (s: Segment) => data.data.segmentSizes[key.city][s] * (data.profile(s)?.affinity[product.category] ?? 0);
+  const total = SEGMENT_NAMES.reduce((sum, s) => sum + weight(s), 0);
 
   const baseInv = inventoryModel({
     stock: inv.stock,
@@ -94,6 +98,7 @@ function buildContext(key: CandidateKey, cfg: EngineConfig): Context {
   });
   return {
     cfg,
+    data,
     key,
     product,
     profile,
@@ -101,10 +106,11 @@ function buildContext(key: CandidateKey, cfg: EngineConfig): Context {
     leadTimeDays: inv.leadTimeDays,
     band: priceBand(product.costPrice, product.mrp, cfg),
     season,
-    segmentSize: segmentSizes[key.city][key.segment],
+    segmentSize: data.data.segmentSizes[key.city][key.segment],
     segmentShare: total > 0 ? weight(key.segment) / total : 0,
     elasticity: CATEGORY_ELASTICITY[product.category],
-    history: historyFor(key.productId, key.segment),
+    history: data.history(key.productId, key.segment),
+    rawDailyRate: inv.dailySalesRate,
     dailyRate,
     baselineAll,
     baseInv,
@@ -136,7 +142,7 @@ export function evaluateOption(ctx: Context, discountPct: number, state: EvalSta
     recentContacts: ctx.profile.recentContacts + state.extraContacts,
   });
   const demandBase: Omit<DemandInput, "coverage"> = {
-    dailySalesRate: getInventory(p.id, ctx.key.city)!.dailySalesRate,
+    dailySalesRate: ctx.rawDailyRate,
     horizonDays: cfg.horizonDays,
     segmentShare: ctx.segmentShare,
     seasonMultiplier: ctx.season.multiplier,
@@ -258,8 +264,8 @@ export function evaluateOption(ctx: Context, discountPct: number, state: EvalSta
 }
 
 // ------------------------------------------------------------ one candidate
-export function evaluateCandidate(key: CandidateKey, cfg: EngineConfig, state: EvalState = FRESH_STATE): Recommendation {
-  const ctx = buildContext(key, cfg);
+export function evaluateCandidate(key: CandidateKey, cfg: EngineConfig, data: IndexedData, state: EvalState = FRESH_STATE): Recommendation {
+  const ctx = buildContext(key, cfg, data);
   return decide(ctx, state);
 }
 
@@ -442,8 +448,8 @@ function narrate(
 
 // ---------------------------------------------------------- discount curve
 /** Profit versus discount, including discounts below the margin floor (flagged illegal) — for charts. Pass the recommendation's own `evalState` to redraw the curve it was decided on. */
-export function discountCurve(key: CandidateKey, cfg: EngineConfig, state: EvalState = FRESH_STATE, maxPct = 40): DiscountOption[] {
-  const ctx = buildContext(key, cfg);
+export function discountCurve(key: CandidateKey, cfg: EngineConfig, data: IndexedData, state: EvalState = FRESH_STATE, maxPct = 40): DiscountOption[] {
+  const ctx = buildContext(key, cfg, data);
   // Always reach the deepest legal discount, even when it is beyond `maxPct` (high-margin products).
   const top = Math.max(maxPct, ctx.band.discounts[ctx.band.discounts.length - 1] ?? 0);
   const points: DiscountOption[] = [];
@@ -455,12 +461,12 @@ export function discountCurve(key: CandidateKey, cfg: EngineConfig, state: EvalS
 const pcKey = (productId: string, city: City) => `${productId}|${city}`;
 const scKey = (segment: Segment, city: City) => `${segment}|${city}`;
 
-export function buildPlan(cfg: EngineConfig): Plan {
+export function buildPlan(cfg: EngineConfig, data: IndexedData): Plan {
   const keys: CandidateKey[] = [];
-  for (const product of products) for (const city of CITIES) for (const segment of SEGMENTS) keys.push({ productId: product.id, segment, city });
+  for (const product of data.data.products) for (const city of CITY_NAMES) for (const segment of SEGMENT_NAMES) keys.push({ productId: product.id, segment, city });
 
   // Pass 1: every candidate on its own.
-  const first = keys.map((k) => evaluateCandidate(k, cfg));
+  const first = keys.map((k) => evaluateCandidate(k, cfg, data));
   const final = new Map<string, Recommendation>(first.map((r) => [r.id, r]));
 
   // Pass 2: budget allocator, best incremental profit per ₹ of promo cost first, stock-aware.
@@ -483,7 +489,7 @@ export function buildPlan(cfg: EngineConfig): Plan {
       final.set(r.id, markUnfunded(r, "BUDGET_EXHAUSTED"));
       continue;
     }
-    const re = evaluateCandidate(key, cfg, { committedUnits: priorUnits, extraContacts: priorContacts, maxAudience });
+    const re = evaluateCandidate(key, cfg, data, { committedUnits: priorUnits, extraContacts: priorContacts, maxAudience });
     if (re.verdict !== "PROMOTE" || !re.chosen) {
       const code: UnfundedCode =
         priorUnits > 0 && re.rejection?.code === "PROTECT_STOCK" ? "STOCK_COMMITTED" : priorContacts > 0 ? "SEGMENT_FATIGUE" : "BUDGET_EXHAUSTED";
@@ -532,7 +538,7 @@ export function buildPlan(cfg: EngineConfig): Plan {
     config: cfg,
     candidates,
     rows: candidates.map(toRow),
-    inventoryRows: buildInventoryRows(cfg, committed),
+    inventoryRows: buildInventoryRows(cfg, data, committed),
     budget: { total: cfg.marketingBudget, used },
   };
 }
@@ -578,10 +584,10 @@ export function toRow(r: Recommendation): PlanRow {
   };
 }
 
-function buildInventoryRows(cfg: EngineConfig, committed: Map<string, number>): InventoryRow[] {
-  return inventory.map((i) => {
-    const product = getProduct(i.productId)!;
-    const season = seasonFor(cfg.planningMonth, product.category);
+function buildInventoryRows(cfg: EngineConfig, data: IndexedData, committed: Map<string, number>): InventoryRow[] {
+  return data.data.inventory.map((i) => {
+    const product = data.product(i.productId)!;
+    const season = data.season(cfg.planningMonth, product.category);
     const dailyDemand = i.dailySalesRate * season.multiplier;
     const predictedDemand = dailyDemand * cfg.horizonDays;
     const plannedUnits = committed.get(pcKey(i.productId, i.city)) ?? 0;
@@ -611,12 +617,12 @@ function buildInventoryRows(cfg: EngineConfig, committed: Map<string, number>): 
 
 // ------------------------------------------------------------------ cache
 const cache = new Map<string, Plan>();
-/** Plans are deterministic, so identical configs share one result. */
-export function getPlan(cfg: EngineConfig): Plan {
-  const key = JSON.stringify(cfg);
+/** Plans are deterministic, so identical config + data share one result. */
+export function getPlan(cfg: EngineConfig, data: IndexedData): Plan {
+  const key = `${data.version}|${JSON.stringify(cfg)}`;
   let plan = cache.get(key);
   if (!plan) {
-    plan = buildPlan(cfg);
+    plan = buildPlan(cfg, data);
     if (cache.size >= 8) cache.delete(cache.keys().next().value as string);
     cache.set(key, plan);
   }

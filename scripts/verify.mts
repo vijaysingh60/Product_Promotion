@@ -5,11 +5,14 @@
 import { DEFAULT_CONFIG } from "../lib/config";
 import { buildPlan, evaluateCandidate } from "../lib/decisionEngine";
 import { formatINR, formatNumber } from "../lib/format";
-import { DEMO_CASES, getProduct, inventory, products } from "../lib/mockData";
+import { indexDataset } from "../lib/dataset";
+import { DEMO_CASES, mockDataset } from "../lib/mockData";
 import type { Recommendation } from "../types";
 
 const cfg = DEFAULT_CONFIG;
-const plan = buildPlan(cfg);
+const data = indexDataset(mockDataset);
+const { products, inventory } = mockDataset;
+const plan = buildPlan(cfg, data);
 const count = <T,>(items: T[], f: (x: T) => string) => {
   const m: Record<string, number> = {};
   items.forEach((x) => (m[f(x)] = (m[f(x)] ?? 0) + 1));
@@ -82,7 +85,7 @@ check(plan.candidates.filter((r) => r.kind === "clearance" && r.status === "fund
 const violations: string[] = [];
 for (const r of plan.candidates) {
   for (const o of r.options) {
-    const p = getProduct(r.productId)!;
+    const p = data.product(r.productId)!;
     if (o.offerPrice < p.costPrice * (1 + cfg.marginFloorPct / 100) - 1e-6) violations.push(`${r.id} ${o.discountPct}% below CP floor`);
     if (o.offerPrice > p.mrp + 1e-6) violations.push(`${r.id} ${o.discountPct}% above MRP`);
   }
@@ -116,13 +119,27 @@ const variants: [string, Partial<typeof cfg>][] = [
 ];
 for (const [name, patch] of variants) {
   const v = { ...cfg, ...patch };
-  const p2 = buildPlan(v);
+  const p2 = buildPlan(v, data);
   const f2 = p2.candidates.filter((r) => r.status === "funded");
   const bad = p2.candidates.flatMap((r) => r.options).filter((o) => o.offerPrice < 0 || !Number.isFinite(o.incrementalProfit) || !Number.isFinite(o.objective));
   const floorBreaks = p2.candidates.filter((r) => r.options.some((o) => o.offerPrice < r.band.costPrice * (1 + v.marginFloorPct / 100) - 1e-6));
   check(bad.length === 0 && floorBreaks.length === 0, `${name}: ${f2.length} funded, ${formatINR(p2.budget.used)} used, no NaN, floor respected`);
   if (name === "zero budget") check(f2.length === 0, "zero budget funds nothing");
   if (name === "margin floor 20%") check(f2.every((r) => r.chosen!.offerPrice >= r.band.costPrice * 1.2 - 1e-6), "floor 20% → every funded offer ≥ CP × 1.2");
+}
+if (process.argv.includes("--db")) {
+  console.log("\n=== DATABASE ROUND TRIP ===");
+  const { getDb, readDataset, DB_NAME } = await import("../lib/db");
+  const { validateDataset } = await import("../lib/dataset");
+  const fromDb = await readDataset(await getDb());
+  check(validateDataset(fromDb) === null, `data read from MongoDB "${DB_NAME}" passes validation (${fromDb.products.length} products, ${fromDb.inventory.length} stock rows)`);
+  const dbPlan = buildPlan(cfg, indexDataset(fromDb));
+  const same = JSON.stringify(dbPlan.rows) === JSON.stringify(plan.rows);
+  check(same, "the plan built from MongoDB data is identical to the plan built from the bundled data");
+  if (!same) {
+    const a = dbPlan.rows.find((r, i) => JSON.stringify(r) !== JSON.stringify(plan.rows[i]));
+    console.log("    first difference:", a?.id);
+  }
 }
 console.log(`\n${failures.length === 0 ? "ALL CHECKS PASSED" : `${failures.length} CHECK(S) FAILED`}`);
 void byId; void lowCity; void products;

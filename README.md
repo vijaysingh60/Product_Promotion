@@ -5,11 +5,33 @@ Decides **what to promote, to which customer segment, in which city, at what dis
 
 ```bash
 npm install
-npm run dev        # http://localhost:3000
-npm run verify     # checks the engine from the console, no UI
+cp .env.example .env     # then fill in your MongoDB connection string
+npm run seed             # one time: fills MongoDB with the demo data
+npm run dev              # http://localhost:3000
+npm run verify           # checks the engine from the console (bundled data, no database needed)
+npm run verify:db        # same, plus: data read from MongoDB gives the identical plan
 ```
 
-Everything runs in TypeScript. No database, no auth, no external calls.
+Everything runs in TypeScript. Data lives in **MongoDB**; there is no auth and no external API.
+
+## Data (MongoDB)
+
+The sidebar badge shows where the numbers came from: green **MongoDB**, or amber **Demo data** (with the reason) if the
+database is unreachable, empty or malformed. In that case the app keeps working on the bundled demo data.
+
+| Collection | Holds |
+|---|---|
+| `products` | name, category, `costPrice`, `mrp`, `margin`, `returnRate` |
+| `inventory` | stock **per product per city**, `dailySalesRate`, `leadTimeDays` |
+| `segments` | price sensitivity, recent contacts, affinity and intent per category |
+| `segment_sizes` | reachable customers per city and segment |
+| `promotions` | past campaigns and the uplift they achieved |
+| `seasonality` | month / festival demand multipliers |
+
+- `npm run seed` fills **empty** collections only; `npm run seed -- --reset` replaces this app's six collections.
+- Edit a document in MongoDB (a cost price, a stock level) and the plan recomputes within ~30 s (data is cached that long).
+- Credentials live in `.env` (`MONGODB_URI`, optional `MONGODB_DB`, default `promopilot`). `.env` is git-ignored.
+- Data is validated on load (known categories and cities, a stock row for every product × city, all four segments, 12 months).
 
 ## The rules the engine never breaks
 
@@ -40,11 +62,14 @@ campaign planned for the same segment.
 
 ```
 lib/config.ts            tunable business rules
-lib/mockData.ts          products, per-city stock, segments, past promotions, seasonality (seeded, no customers)
+lib/db.ts                MongoDB access + fallback to demo data (server only)
+lib/dataset.ts           indexed lookups over a dataset, ids, validation (pure; the engine is handed this)
+lib/mockData.ts          the demo dataset: used by `npm run seed` and as the fallback
 lib/pricing.ts           CP/MRP legal band
 lib/models/              responseModel · demandModel · inventoryModel   ← deterministic stubs, swap targets
 lib/decisionEngine.ts    grid search, verdicts, budget allocator, discount curve
 lib/analytics.ts         dashboard numbers and chart series
+scripts/seed.mts         writes the demo data into MongoDB
 scripts/verify.mts       console check of constraints + the three demo cases
 ```
 
@@ -62,7 +87,7 @@ typed numbers. The engine and UI do not care what is behind them.
 ## Not built, on purpose
 
 No per-customer targeting, no training in this layer, no competitor pricing, no multi-warehouse allocation,
-no LLM calls (explanations are templates), no auth, no database.
+no LLM calls (explanations are templates), no auth.
 
 ## About `ml/` and `dmart_synthetic_dataset/`
 

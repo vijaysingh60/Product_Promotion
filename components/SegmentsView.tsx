@@ -1,11 +1,10 @@
 import { formatNumber } from "@/lib/format";
-import { CATEGORIES, CITIES, segmentProfiles, segmentSizes } from "@/lib/mockData";
-import type { Category, Segment } from "@/types";
+import { CATEGORY_NAMES as CATEGORIES, CITY_NAMES as CITIES, type Category, type Segment, type SegmentProfile, type SegmentSizes } from "@/types";
 import { Card, MeterBar, td, th, thRight } from "./ui";
 
 const ACCENT = ["border-t-sky-500", "border-t-indigo-500", "border-t-emerald-500", "border-t-amber-500"];
 
-function Heat({ matrix, title, subtitle }: { matrix: (s: Segment) => Record<Category, number>; title: string; subtitle: string }) {
+function Heat({ profiles, matrix, title, subtitle }: { profiles: SegmentProfile[]; matrix: (s: Segment) => Record<Category, number>; title: string; subtitle: string }) {
   return (
     <Card title={title} subtitle={subtitle}>
       <div className="overflow-x-auto p-3">
@@ -17,7 +16,7 @@ function Heat({ matrix, title, subtitle }: { matrix: (s: Segment) => Record<Cate
             </tr>
           </thead>
           <tbody>
-            {segmentProfiles.map((p) => (
+            {profiles.map((p) => (
               <tr key={p.segment}>
                 <td className={`${td} font-medium text-slate-900`}>{p.segment}</td>
                 {CATEGORIES.map((c) => {
@@ -40,7 +39,7 @@ function Heat({ matrix, title, subtitle }: { matrix: (s: Segment) => Record<Cate
 }
 
 /** Segment-level view only: who we can reach, how price-sensitive they are, what they like. No individual customers. */
-export default function SegmentsView() {
+export default function SegmentsView({ profiles: segmentProfiles, sizes: segmentSizes }: { profiles: SegmentProfile[]; sizes: SegmentSizes }) {
   const total = (s: Segment) => CITIES.reduce((sum, c) => sum + segmentSizes[c][s], 0);
 
   return (
@@ -65,8 +64,8 @@ export default function SegmentsView() {
         })}
       </div>
 
-      <Heat matrix={(s) => segmentProfiles.find((p) => p.segment === s)!.affinity} title="Affinity by category" subtitle="Long-run preference, 0–100. Feeds the response model and each segment's share of sales." />
-      <Heat matrix={(s) => segmentProfiles.find((p) => p.segment === s)!.intent} title="Recent intent by category" subtitle="Browsing and cart activity in the last weeks, 0–100. Feeds the response model." />
+      <Heat profiles={segmentProfiles} matrix={(s) => segmentProfiles.find((p) => p.segment === s)!.affinity} title="Affinity by category" subtitle="Long-run preference, 0–100. Feeds the response model and each segment's share of sales." />
+      <Heat profiles={segmentProfiles} matrix={(s) => segmentProfiles.find((p) => p.segment === s)!.intent} title="Recent intent by category" subtitle="Browsing and cart activity in the last weeks, 0–100. Feeds the response model." />
 
       <Card title="Reachable customers by city" subtitle="Audience sizes are capped by stock, so a promotion may contact only part of a segment.">
         <div className="overflow-x-auto">
